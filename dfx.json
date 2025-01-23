@@ -5,12 +5,8 @@
       "type": "motoko"
     },
     "react-project-frontend": {
-      "dependencies": [
-        "react-project-backend"
-      ],
-      "source": [
-        "src/react-project-frontend/dist"
-      ],
+      "dependencies": ["react-project-backend"],
+      "source": ["src/dist"],
       "type": "assets",
       "workspace": "react-project-frontend"
     }

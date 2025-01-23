@@ -122,7 +122,7 @@ const PermisoPage = () => {
   ];
   return (
     <Layout>
-      <h1 className="text-3xl font-bold underline">Permisos Page</h1>
+      <h1 className="text-3xl font-bold underline">Pagina Permisos</h1>
       <DataTable columns={columns} data={data} />
     </Layout>
   );
