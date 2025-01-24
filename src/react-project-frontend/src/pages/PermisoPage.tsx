@@ -5,11 +5,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useQueryCall } from "@ic-reactor/react";
 
-// const { data: data1, call: call2 } = useQueryCall({
-//   functionName: "readAllPermissions"
-// });
+ const { data: data1, call: call2 } = useQueryCall({
+   functionName: "readAllPermissions"
+ });
 
-// console.log(data1, "data");
+ console.log(data1, "data");
 
 const contentModal = (data: any) => {
   return (
