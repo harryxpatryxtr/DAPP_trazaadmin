@@ -64,13 +64,19 @@ const ModalCreate = (data?: any) => {
           className="col-span-3"
           id="name"
           placeholder="Numero de Documento"
+          defaultValue={data?.numeroDocumento}
         />
       </div>
       <div className="grid grid-cols-4 items-center gap-4">
         <Label htmlFor="name" className="text-right">
           Nombre
         </Label>
-        <Input className="col-span-3" id="name" placeholder="Nombre" />
+        <Input
+          className="col-span-3"
+          id="name"
+          placeholder="Nombre"
+          defaultValue={data?.nombre}
+        />
       </div>
       <div className="grid grid-cols-4 items-center gap-4">
         <Label htmlFor="name" className="text-right">
@@ -80,6 +86,7 @@ const ModalCreate = (data?: any) => {
           className="col-span-3"
           id="name"
           placeholder="Apellido Paterno"
+          defaultValue={data?.apellidoPaterno}
         />
       </div>
       <div className="grid grid-cols-4 items-center gap-4">
@@ -90,31 +97,52 @@ const ModalCreate = (data?: any) => {
           className="col-span-3"
           id="name"
           placeholder="Apellido Materno"
+          defaultValue={data?.apellidoMaterno}
         />
       </div>
       <div className="grid grid-cols-4 items-center gap-4">
         <Label htmlFor="name" className="text-right">
           Foto
         </Label>
-        <Input className="col-span-3" id="name" placeholder="Foto" />
+        <Input
+          className="col-span-3"
+          id="name"
+          placeholder="Foto"
+          defaultValue={data?.foto}
+        />
       </div>
       <div className="grid grid-cols-4 items-center gap-4">
         <Label htmlFor="name" className="text-right">
           Correo
         </Label>
-        <Input className="col-span-3" id="name" placeholder="Correo" />
+        <Input
+          className="col-span-3"
+          id="name"
+          placeholder="Correo"
+          defaultValue={data?.correo}
+        />
       </div>
       <div className="grid grid-cols-4 items-center gap-4">
         <Label htmlFor="name" className="text-right">
           Usuario
         </Label>
-        <Input className="col-span-3" id="name" placeholder="Usuario" />
+        <Input
+          className="col-span-3"
+          id="name"
+          placeholder="Usuario"
+          defaultValue={data?.usuario}
+        />
       </div>
       <div className="grid grid-cols-4 items-center gap-4">
         <Label htmlFor="name" className="text-right">
           Contraseña
         </Label>
-        <Input className="col-span-3" id="name" placeholder="Contraseña" />
+        <Input
+          className="col-span-3"
+          id="name"
+          placeholder="Contraseña"
+          defaultValue={data?.contrasena}
+        />
       </div>
     </div>
   );
