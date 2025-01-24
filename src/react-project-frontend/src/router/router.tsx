@@ -4,6 +4,7 @@ import LoginPage from "../pages/LoginPage";
 import HomePage from "../pages/HomePage";
 import PermisoPage from "../pages/PermisoPage";
 import RolPage from "@/pages/RolPage";
+import UsuarioPage from "@/pages/UsuarioPage";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -13,7 +14,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/permiso" element={<PermisoPage />} />
         <Route path="/rol" element={<RolPage />} />
-
+        <Route path="/usuario" element={<UsuarioPage />} />
         {/* Página principal */}
         {/* <Route path="/" element={<HomePage />} /> */}
 
