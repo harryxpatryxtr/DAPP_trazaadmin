@@ -2,6 +2,29 @@ import Layout from "@/components/layout";
 import { DataTable } from "@/components/general/DataTable/DataTable";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/general/Modal/Modal";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+
+const ModalCreate = () => {
+  return (
+    <div className="grid gap-4 py-4">
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Codigo
+        </Label>
+        <Input className="col-span-3" id="name" placeholder="Codigo" />
+      </div>
+    </div>
+  );
+};
+
+const ModalAssign = () => {
+  return <div>ModalAssign</div>;
+};
+
+const ModalEdit = () => {
+  return <div>ModalEdit</div>;
+};
 
 const UsuarioPage = () => {
   const columns = [
@@ -46,18 +69,36 @@ const UsuarioPage = () => {
       correo: "correo 1",
       rol: "rol 1",
       estado: "estado 1"
+    },
+    {
+      id: 2,
+      name: "name 2",
+      usuario: "usuario 2",
+      funcion: "funcion 2",
+      correo: "correo 2",
+      rol: "rol 2",
+      estado: "estado 2"
+    },
+    {
+      id: 3,
+      name: "name 3",
+      usuario: "usuario 3",
+      funcion: "funcion 3",
+      correo: "correo 3",
+      rol: "rol 3",
+      estado: "estado 3"
     }
   ];
   const headerActions = [
     <Modal
       trigger={<Button>Crear</Button>}
-      data={() => {}}
+      data={ModalCreate()}
       subTitle="Nuevo rol"
       title="Nuevo"
     />,
     <Modal
       trigger={<Button>Asignar</Button>}
-      data={() => {}}
+      data={ModalAssign()}
       subTitle="Asignar rol"
       title="Asignar"
     />
