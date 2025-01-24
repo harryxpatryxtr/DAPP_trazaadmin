@@ -1,6 +1,8 @@
 import Text "mo:base/Text";
 import Trie "mo:base/Trie";
+import Iter "mo:base/Iter";
 import Types "./types/types";
+
 actor class Adm() {
   private stable var permissionsADM : Trie.Trie<Text, Types.AdmPermissions_Type> = Trie.empty();
   type Key<K> = Trie.Key<K>;
@@ -20,7 +22,10 @@ actor class Adm() {
     let result = Trie.find(permissionsADM, key(id_permissions), Text.equal);
     return result;
   };
-
+  public query func readAllPermissions() : async [(Text, Types.AdmPermissions_Type)] {
+    let result = Iter.toArray(Trie.iter(permissionsADM));
+    return result;
+  };
  private stable var rolesADM : Trie.Trie<Text, Types.AdmRoles_Type> = Trie.empty();
   public func createRole(role : Types.AdmRoles_Type) : async Text {
     rolesADM := Trie.replace(
