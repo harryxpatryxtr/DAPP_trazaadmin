@@ -76,7 +76,9 @@ module{
   };
 
   public type RolUser_Type = {
-    id_user   : Text;
+    id_rol_user    : Text;
+    id_user: Text;
+    id_rol : Text;
     id_group : Text;
     state : Text;
     user_created : Text;
