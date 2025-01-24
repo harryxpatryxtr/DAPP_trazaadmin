@@ -4,26 +4,142 @@ import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/general/Modal/Modal";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
 
-const ModalCreate = () => {
+const ModalCreate = (data?: any) => {
   return (
     <div className="grid gap-4 py-4">
       <div className="grid grid-cols-4 items-center gap-4">
         <Label htmlFor="name" className="text-right">
           Codigo
         </Label>
-        <Input className="col-span-3" id="name" placeholder="Codigo" />
+        <Input
+          className="col-span-3"
+          id="name"
+          placeholder="Codigo"
+          defaultValue={data?.codigo}
+        />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Tipo de usuario
+        </Label>
+        <Select>
+          <SelectTrigger className="col-span-3">
+            <SelectValue placeholder="Selecciona un tipo de usuario" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="user1">User 1</SelectItem>
+            <SelectItem value="user2">User 2</SelectItem>
+            <SelectItem value="user3">User 3</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Tipo de Documento
+        </Label>
+        <Select>
+          <SelectTrigger className="col-span-3">
+            <SelectValue placeholder="Selecciona un tipo de documento" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="doc1">Doc 1</SelectItem>
+            <SelectItem value="doc2">Doc 2</SelectItem>
+            <SelectItem value="doc3">Doc 3</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Numero de Documento
+        </Label>
+        <Input
+          className="col-span-3"
+          id="name"
+          placeholder="Numero de Documento"
+        />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Nombre
+        </Label>
+        <Input className="col-span-3" id="name" placeholder="Nombre" />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Apellido Paterno
+        </Label>
+        <Input
+          className="col-span-3"
+          id="name"
+          placeholder="Apellido Paterno"
+        />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Apellido Materno
+        </Label>
+        <Input
+          className="col-span-3"
+          id="name"
+          placeholder="Apellido Materno"
+        />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Foto
+        </Label>
+        <Input className="col-span-3" id="name" placeholder="Foto" />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Correo
+        </Label>
+        <Input className="col-span-3" id="name" placeholder="Correo" />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Usuario
+        </Label>
+        <Input className="col-span-3" id="name" placeholder="Usuario" />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Contraseña
+        </Label>
+        <Input className="col-span-3" id="name" placeholder="Contraseña" />
       </div>
     </div>
   );
 };
 
 const ModalAssign = () => {
-  return <div>ModalAssign</div>;
-};
-
-const ModalEdit = () => {
-  return <div>ModalEdit</div>;
+  return (
+    <div className="grid gap-4 py-4">
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Rol
+        </Label>
+        <Select>
+          <SelectTrigger className="col-span-3">
+            <SelectValue placeholder="Selecciona un rol" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="rol1">Rol 1</SelectItem>
+            <SelectItem value="rol2">Rol 2</SelectItem>
+            <SelectItem value="rol3">Rol 3</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
+  );
 };
 
 const UsuarioPage = () => {
@@ -56,7 +172,14 @@ const UsuarioPage = () => {
       header: "actions",
       accessorKey: "actions",
       cell: ({ row }: { row: any }) => {
-        return <Button>Editar</Button>;
+        return (
+          <Modal
+            trigger={<Button>Editar</Button>}
+            data={ModalCreate(row)}
+            subTitle="Editar el usuario"
+            title="Editar"
+          />
+        );
       }
     }
   ];
@@ -93,13 +216,13 @@ const UsuarioPage = () => {
     <Modal
       trigger={<Button>Crear</Button>}
       data={ModalCreate()}
-      subTitle="Nuevo rol"
+      subTitle="Nuevo usuario"
       title="Nuevo"
     />,
     <Modal
       trigger={<Button>Asignar</Button>}
       data={ModalAssign()}
-      subTitle="Asignar rol"
+      subTitle="Asignar usuario"
       title="Asignar"
     />
   ];
