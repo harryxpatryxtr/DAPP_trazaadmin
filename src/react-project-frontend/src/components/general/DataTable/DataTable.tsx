@@ -168,10 +168,12 @@ export type Payment = {
 
 export function DataTable({
   columns,
-  data
+  data,
+  headerActions
 }: {
   columns: ColumnDef<any>[];
   data: any[];
+  headerActions?: React.ReactNode[];
 }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -199,10 +201,9 @@ export function DataTable({
       rowSelection
     }
   });
-
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="flex items-center justify-between w-full py-4">
         <Input
           placeholder="Buscar permisos..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
@@ -211,32 +212,11 @@ export function DataTable({
           }
           className="max-w-sm"
         />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="flex items-center gap-2">
+          {headerActions?.map((action, index) => (
+            <React.Fragment key={index}>{action}</React.Fragment>
+          ))}
+        </div>
       </div>
       <div className="rounded-md border">
         <Table>

@@ -20,7 +20,6 @@ export function Modal({
   subTitle?: string;
   title?: string;
 }) {
-  console.log(data, "trigger");
   return (
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 import HomePage from "../pages/HomePage";
 import PermisoPage from "../pages/PermisoPage";
+import RolPage from "@/pages/RolPage";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const AppRoutes: React.FC = () => {
         {/* Página de login */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/permiso" element={<PermisoPage />} />
+        <Route path="/rol" element={<RolPage />} />
 
         {/* Página principal */}
         {/* <Route path="/" element={<HomePage />} /> */}

@@ -3,6 +3,7 @@ import Layout from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { PlusIcon } from "lucide-react";
 
 const contentModal = (data: any) => {
   return (
@@ -120,10 +121,18 @@ const PermisoPage = () => {
       estado: "Estado 4"
     }
   ];
+  const headerActions = [
+    <Modal
+      trigger={<Button>Nuevo</Button>}
+      data={contentModal(data)}
+      subTitle="Nuevo permiso"
+      title="Nuevo"
+    />
+  ];
   return (
     <Layout>
       <h1 className="text-3xl font-bold underline">Pagina Permisos</h1>
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={data} headerActions={headerActions} />
     </Layout>
   );
 };
