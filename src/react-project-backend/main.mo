@@ -1,6 +1,6 @@
 import Text "mo:base/Text";
 import Trie "mo:base/Trie";
-import Types "./declarations/declarations";
+import Types "./types/types";
 actor class Adm() {
   private stable var permissionsADM : Trie.Trie<Text, Types.AdmPermissions_Type> = Trie.empty();
   type Key<K> = Trie.Key<K>;
