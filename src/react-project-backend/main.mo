@@ -41,7 +41,10 @@ actor class Adm() {
     let result = Trie.find(rolesADM, key(id_rol), Text.equal);
     return result;
   };
-
+ public query func readAllRoles() : async [(Text, Types.AdmRoles_Type)] {
+    let result = Iter.toArray(Trie.iter(rolesADM));
+    return result;
+  };
  private stable var rolPermissionADM : Trie.Trie<Text, Types.AdmRolPermissions_Type> = Trie.empty();
   public func createRolPermission(rolPermission : Types.AdmRolPermissions_Type) : async Text {
     rolPermissionADM := Trie.replace(
@@ -57,7 +60,10 @@ actor class Adm() {
     let result = Trie.find(rolPermissionADM, key(id_rol_permissions), Text.equal);
     return result;
   };
-
+   public query func readRolPermissions() : async [(Text, Types.AdmRolPermissions_Type)] {
+    let result = Iter.toArray(Trie.iter(rolPermissionADM));
+    return result;
+  };
   private stable var TypeUserADM : Trie.Trie<Text, Types.TypeUser_Type> = Trie.empty();
   public func createTypeUser(typeUser : Types.TypeUser_Type) : async Text {
     TypeUserADM := Trie.replace(
@@ -90,4 +96,22 @@ private stable var UserADM : Trie.Trie<Text, Types.User_Type> = Trie.empty();
     return result;
   };
   
+
+private stable var RolUserADM : Trie.Trie<Text, Types.RolUser_Type> = Trie.empty();
+  public func createRolUser(rolUser : Types.RolUser_Type) : async Text {
+    RolUserADM := Trie.replace(
+      RolUserADM,
+      key(rolUser.id_rol_user),
+      Text.equal,
+      ?rolUser,
+    ).0;
+
+    return rolUser.id_rol_user;
+  };
+
+  public query func readRolUserId(id_rol_user : Text) : async ?Types.RolUser_Type {
+    let result = Trie.find(RolUserADM, key(id_rol_user), Text.equal);
+    return result;
+  };
+
 };
