@@ -53,7 +53,7 @@ actor class Adm() {
     return result;
   };
 
- private stable var TypeUserADM : Trie.Trie<Text, Types.TypeUser_Type> = Trie.empty();
+  private stable var TypeUserADM : Trie.Trie<Text, Types.TypeUser_Type> = Trie.empty();
   public func createTypeUser(typeUser : Types.TypeUser_Type) : async Text {
     TypeUserADM := Trie.replace(
       TypeUserADM,
@@ -69,6 +69,20 @@ actor class Adm() {
     return result;
   };
 
+private stable var UserADM : Trie.Trie<Text, Types.User_Type> = Trie.empty();
+  public func createUser(user : Types.User_Type) : async Text {
+    UserADM := Trie.replace(
+      UserADM,
+      key(user.id_user),
+      Text.equal,
+      ?user,
+    ).0;
 
+    return user.id_user;
+  };
+  public query func readUser(id_user : Text) : async ?Types.User_Type {
+    let result = Trie.find(UserADM, key(id_user), Text.equal);
+    return result;
+  };
   
 };
