@@ -3,13 +3,22 @@ import Layout from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useQueryCall } from "@ic-reactor/react";
+import { react_project_backend } from "../../../declarations/react-project-backend";
 
-// const { data: data1, call: call2 } = useQueryCall({
-//   functionName: "readAllPermissions"
-// });
+react_project_backend.readAllPermissions().then((greeting: any) => {
+  console.log(greeting, "greeting");
+});
 
-// console.log(data1, "data");
+react_project_backend.createPermission({
+  user_created: "su7dhlg",
+  permissions: "fjvpnj9",
+  description_permissions: "qw8xd7",
+  update_date: "wf3o2g8",
+  id_group: "dvqpqp",
+  state: "5r5cv7c",
+  id_permissions: "0001",
+  creation_date: "vdfkwlf"
+});
 
 const contentModal = (data: any) => {
   return (
