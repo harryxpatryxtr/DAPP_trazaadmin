@@ -13,12 +13,14 @@ export function Modal({
   data,
   trigger,
   subTitle,
-  title
+  title,
+  handleSubmit
 }: {
   data: any;
   trigger: any;
   subTitle?: string;
   title?: string;
+  handleSubmit?: () => void;
 }) {
   return (
     <Dialog>
@@ -30,7 +32,9 @@ export function Modal({
         </DialogHeader>
         {data}
         <DialogFooter>
-          <Button type="submit">Guardar</Button>
+          <Button type="submit" onClick={handleSubmit}>
+            Guardar
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

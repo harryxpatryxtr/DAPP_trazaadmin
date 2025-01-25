@@ -11,6 +11,11 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
+import { react_project_backend } from "../../../declarations/react-project-backend";
+
+// react_project_backend.().then((greeting: any) => {
+//   console.log(greeting, "greeting");
+// });
 
 const ModalAssign = () => {
   return (
@@ -111,6 +116,39 @@ const ModalEdit = (data: any) => {
 };
 
 const RolPage = () => {
+  const dataRol = [
+    {
+      rol: "e0s7ok",
+      user_created: "8lrexc",
+      description_rol: "qhh34r",
+      update_date: "f7q90k5",
+      id_group: "5q8e1on",
+      state: "cl0kyhi",
+      id_rol: "m3w9hzj",
+      creation_date: "3s15vml"
+    },
+    {
+      rol: "03k4iz",
+      user_created: "f48dbo",
+      description_rol: "6ahcjrh",
+      update_date: "5olcmn9",
+      id_group: "229f3fc",
+      state: "sb4k0c",
+      id_rol: "sy2vdqq",
+      creation_date: "ljytap"
+    },
+    {
+      rol: "5vls5zn",
+      user_created: "utg0ugo",
+      description_rol: "j7672sq",
+      update_date: "xm4xp73",
+      id_group: "swor5bk",
+      state: "0uu13mi",
+      id_rol: "42zen5",
+      creation_date: "lba1prg"
+    }
+  ];
+  // react_project_backend.readAllRoles
   const columns = [
     {
       header: "item",

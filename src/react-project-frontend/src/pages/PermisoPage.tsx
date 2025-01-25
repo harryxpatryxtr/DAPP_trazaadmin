@@ -3,24 +3,11 @@ import Layout from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { react_project_backend } from "../../../declarations/react-project-backend";
-
-react_project_backend.readAllPermissions().then((greeting: any) => {
-  console.log(greeting, "greeting");
-});
-
-react_project_backend.createPermission({
-  user_created: "su7dhlg",
-  permissions: "fjvpnj9",
-  description_permissions: "qw8xd7",
-  update_date: "wf3o2g8",
-  id_group: "dvqpqp",
-  state: "5r5cv7c",
-  id_permissions: "0001",
-  creation_date: "vdfkwlf"
-});
+import { usePermissions } from "@/hooks/usePermissions";
+import { useEffect, useState } from "react";
 
 const contentModal = (data: any) => {
+  if (!data) return null;
   return (
     <div className="grid gap-4 py-4">
       <div className="grid grid-cols-4 items-center gap-4">
@@ -60,6 +47,24 @@ const contentModal = (data: any) => {
 };
 
 const PermisoPage = () => {
+  const [data, setData] = useState<any>(null);
+  const { permissions, loading, error, fetchPermissions, createPermission } =
+    usePermissions();
+
+  const handleCreatePermission = () => {
+    console.log(data, "data");
+    createPermission({
+      user_created: "user222",
+      permissions: data.permiso,
+      description_permissions: data.description,
+      update_date: "2023-01-01",
+      id_group: "group1",
+      state: "active",
+      id_permissions: "003",
+      creation_date: "2023-01-01"
+    });
+  };
+
   const columns = [
     {
       id: "item",
@@ -97,57 +102,53 @@ const PermisoPage = () => {
             data={contentModal(row.original)}
             subTitle="Editar el permiso"
             title="Editar"
+            handleSubmit={handleCreatePermission}
           />
         );
       }
     }
   ];
-  const data = [
-    {
-      id: 1,
-      item: "Item 1",
-      permiso: "Permiso 1",
-      description: "Description 1",
-      autor: "Autor 1",
-      estado: "Estado 1"
-    },
-    {
-      id: 2,
-      item: "Item 2",
-      permiso: "Permiso 2",
-      description: "Description 2",
-      autor: "Autor 2",
-      estado: "Estado 2"
-    },
-    {
-      id: 3,
-      item: "Item 3",
-      permiso: "Permiso 3",
-      description: "Description 3",
-      autor: "Autor 3",
-      estado: "Estado 3"
-    },
-    {
-      id: 4,
-      item: "Item 4",
-      permiso: "Permiso 4",
-      description: "Description 4",
-      autor: "Autor 4",
-      estado: "Estado 4"
-    }
-  ];
+
   const headerActions = [
     <Modal
       trigger={<Button>Nuevo</Button>}
       data={contentModal(data)}
       subTitle="Nuevo permiso"
       title="Nuevo"
+      handleSubmit={handleCreatePermission}
     />
   ];
+
+  useEffect(() => {
+    fetchPermissions();
+  }, []);
+
+  useEffect(() => {
+    console.log(permissions, "permissions");
+    setData(
+      permissions.map((permission) => ({
+        id: permission.id_permissions,
+        item: permission.id_permissions,
+        permiso: permission.permissions,
+        description: permission.description_permissions,
+        autor: permission.user_created,
+        estado: permission.state
+      }))
+    );
+  }, [permissions]);
+
   return (
     <Layout>
       <h1 className="text-3xl font-bold underline">Pagina Permisos</h1>
-      <DataTable columns={columns} data={data} headerActions={headerActions} />
+      {loading && <p>Cargando permisos...</p>}
+      {error && <p>Error al cargar los permisos.</p>}
+      {data && (
+        <DataTable
+          columns={columns}
+          data={data}
+          headerActions={headerActions}
+        />
+      )}
     </Layout>
   );
 };
