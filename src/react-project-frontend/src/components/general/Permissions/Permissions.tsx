@@ -17,31 +17,46 @@ export const Permissions = () => {
   const [data, setData] = useState<any>(null);
   const [newData, setNewData] = useState<Inputs | null>(null);
   const [open, setOpen] = useState(false);
+  const userData = JSON.parse(localStorage.getItem("user") || "{}");
   const { permissions, loading, error, fetchPermissions, createPermission } =
     usePermissions();
 
   const handleCreatePermission = () => {
     const id_permissions = Math.random().toString(36).substring(2, 15);
-    if (newData) {
-      createPermission({
-        user_created: "user222", // # TODO: cambiar por el usuario logueado
-        permissions: newData.permiso,
-        description_permissions: newData.descripcion,
-        update_date: new Date().toISOString(),
-        id_group: "group1",
-        state: "active",
-        id_permissions: id_permissions,
-        creation_date: new Date().toISOString()
-      });
-      setOpen(false);
+    if (!userData) {
+      console.log("no userData");
+      return;
     }
+    const user_created = userData.user_created;
+    if (!newData) {
+      console.log("no newData");
+      return;
+    }
+    if (!user_created) {
+      console.log("no user_created");
+      return;
+    }
+    createPermission({
+      user_created: user_created,
+      permissions: newData.permiso,
+      description_permissions: newData.descripcion,
+      update_date: "", // TODO: se va
+      id_group: "group1", // TODO: se va
+      state: "active",
+      id_permissions: id_permissions,
+      creation_date: "2025-01-30"
+    });
+    setOpen(false);
   };
 
   const columns = [
     {
       id: "item",
       header: "Item",
-      accessorKey: "item"
+      accessorKey: "item",
+      cell: ({ row }: { row: any }) => {
+        return <p>{row.index + 1}</p>;
+      }
     },
     {
       id: "permiso",
@@ -71,7 +86,13 @@ export const Permissions = () => {
         return (
           <Modal
             trigger={<Button>Editar</Button>}
-            data={ContentModalUpdate(row.original, setNewData)}
+            data={
+              <ContentModalUpdate
+                row={row.original}
+                setNewData={setNewData}
+                setOpen={setOpen}
+              />
+            }
             subTitle="Editar el permiso"
             title="Editar"
           />
@@ -107,11 +128,10 @@ export const Permissions = () => {
     console.log(permissions, "permissions");
     setData(
       permissions.map((permission) => ({
-        id: permission.id_permissions,
         item: permission.id_permissions,
         permiso: permission.permissions,
         description: permission.description_permissions,
-        autor: permission.user_created,
+        autor: userData.username,
         estado: permission.state
       }))
     );

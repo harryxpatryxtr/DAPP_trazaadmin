@@ -49,6 +49,7 @@ export const usePermissions = () => {
     try {
       await react_project_backend.createPermission(permission);
       // Opcional: Refrescar la lista de permisos después de crear
+      console.log(permission, "permission end");
       await fetchPermissions();
     } catch (err: any) {
       console.error(err);

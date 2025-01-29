@@ -2,6 +2,13 @@ import { Input } from "../../../../ui/input";
 import { Label } from "../../../../ui/label";
 import { Button } from "@/components/ui/button";
 import { useForm, SubmitHandler } from "react-hook-form";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem
+} from "@/components/ui/select";
 
 type Inputs = {
   estado: string;
@@ -21,7 +28,7 @@ export const ContentModalUpdate = (
     formState: { errors }
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+    // console.log(data);
     setNewData(data);
   };
 
@@ -29,36 +36,12 @@ export const ContentModalUpdate = (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 py-4">
         <div className="grid grid-cols-4 items-center gap-x-4">
-          <Label htmlFor="name" className="text-right">
-            Codigo
-          </Label>
-          <Input
-            id="name"
-            defaultValue={data.id_permissions}
-            className="col-span-3"
-            disabled
-            {...register("permiso")}
-          />
-        </div>
-        <div className="grid grid-cols-4 items-center gap-x-4">
-          <Label htmlFor="username" className="text-right">
-            Permiso
-          </Label>
-          <Input
-            id="username"
-            defaultValue={data.permissions}
-            className="col-span-3"
-            disabled
-            {...register("permiso")}
-          />
-        </div>
-        <div className="grid grid-cols-4 items-center gap-x-4">
           <Label htmlFor="username" className="text-right">
             Descripción
           </Label>
           <Input
             id="username"
-            defaultValue={data.description_permissions}
+            defaultValue={data.description}
             className="col-span-3"
             {...register("autor", { required: true })}
           />
@@ -72,12 +55,15 @@ export const ContentModalUpdate = (
           <Label htmlFor="username" className="text-right">
             Estado
           </Label>
-          <Input
-            id="username"
-            defaultValue={data.estado}
-            className="col-span-3"
-            {...register("estado", { required: true })}
-          />
+          <Select>
+            <SelectTrigger className="col-span-3">
+              <SelectValue placeholder="Select" defaultValue={data.state} />
+            </SelectTrigger>
+            <SelectContent position="popper">
+              <SelectItem value="active">Activo</SelectItem>
+              <SelectItem value="inactive">Inactivo</SelectItem>
+            </SelectContent>
+          </Select>
           {errors.estado && (
             <span className="text-red-500 col-span-4 text-xs text-right">
               Este campo es requerido
