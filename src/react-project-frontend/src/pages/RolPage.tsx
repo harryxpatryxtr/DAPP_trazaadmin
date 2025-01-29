@@ -13,9 +13,9 @@ import {
 } from "@/components/ui/select";
 import { react_project_backend } from "../../../declarations/react-project-backend";
 
-// react_project_backend.().then((greeting: any) => {
-//   console.log(greeting, "greeting");
-// });
+react_project_backend.readAllRoles().then((greeting: any) => {
+   console.log(greeting, "greeting");
+ });
 
 const ModalAssign = () => {
   return (
