@@ -96,6 +96,11 @@ private stable var UserADM : Trie.Trie<Text, Types.User_Type> = Trie.empty();
     return result;
   };
   
+  public query func readAllUsers() : async [(Text, Types.User_Type)] {
+    let result = Iter.toArray(Trie.iter(UserADM));
+    return result;
+  };
+
 
 private stable var RolUserADM : Trie.Trie<Text, Types.RolUser_Type> = Trie.empty();
   public func createRolUser(rolUser : Types.RolUser_Type) : async Text {
