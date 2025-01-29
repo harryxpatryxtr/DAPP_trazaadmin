@@ -43,7 +43,6 @@ export const usePermissions = () => {
     }
   };
 
-  // Crear un nuevo permiso
   const createPermission = async (permission: Permission) => {
     setLoading(true);
     setError(null);

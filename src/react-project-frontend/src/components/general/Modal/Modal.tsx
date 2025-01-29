@@ -8,22 +8,26 @@ import {
   DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog";
+import { useEffect, useState } from "react";
 
 export function Modal({
   data,
   trigger,
   subTitle,
   title,
-  handleSubmit
-}: {
+  setOpen,
+  open
+}: // handleSubmit
+{
   data: any;
   trigger: any;
   subTitle?: string;
   title?: string;
-  handleSubmit?: () => void;
+  setOpen?: () => void;
+  open?: boolean;
 }) {
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -31,11 +35,6 @@ export function Modal({
           <DialogDescription>{subTitle}</DialogDescription>
         </DialogHeader>
         {data}
-        <DialogFooter>
-          <Button type="submit" onClick={handleSubmit}>
-            Guardar
-          </Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

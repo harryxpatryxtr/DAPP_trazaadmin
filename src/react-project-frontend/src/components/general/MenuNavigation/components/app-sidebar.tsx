@@ -58,15 +58,15 @@ const data = {
       items: [
         {
           title: "Permiso",
-          url: "#"
+          url: "/permiso"
         },
         {
           title: "Rol",
-          url: "#"
+          url: "/rol"
         },
         {
           title: "Usuario",
-          url: "#"
+          url: "/usuario"
         }
       ]
     },

@@ -50,9 +50,9 @@ const ModalCreate = (data?: any) => {
             <SelectValue placeholder="Selecciona un tipo de documento" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="doc1">Doc 1</SelectItem>
-            <SelectItem value="doc2">Doc 2</SelectItem>
-            <SelectItem value="doc3">Doc 3</SelectItem>
+            <SelectItem value="doc1">DNI</SelectItem>
+            <SelectItem value="doc2">Carnet de Extranjeria</SelectItem>
+            <SelectItem value="doc3">Pasaporte</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -108,6 +108,7 @@ const ModalCreate = (data?: any) => {
           className="col-span-3"
           id="name"
           placeholder="Foto"
+          type="file"
           defaultValue={data?.foto}
         />
       </div>
@@ -153,16 +154,34 @@ const ModalAssign = () => {
     <div className="grid gap-4 py-4">
       <div className="grid grid-cols-4 items-center gap-4">
         <Label htmlFor="name" className="text-right">
-          Rol
+          Usuario
         </Label>
         <Select>
           <SelectTrigger className="col-span-3">
             <SelectValue placeholder="Selecciona un rol" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="rol1">Rol 1</SelectItem>
-            <SelectItem value="rol2">Rol 2</SelectItem>
-            <SelectItem value="rol3">Rol 3</SelectItem>
+            <SelectItem value="rol1">pmollehuanca</SelectItem>
+            <SelectItem value="rol2">gfuentes</SelectItem>
+            <SelectItem value="rol3">shuaman</SelectItem>
+            <SelectItem value="rol3">magreda</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* #TODO: Implementar el select multiple de permisos */}
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Rol
+        </Label>
+        <Select>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Permiso" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="Rol1">Administrator</SelectItem>
+            <SelectItem value="Rol2">Operator</SelectItem>
+            <SelectItem value="Rol3">Auditor</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -179,6 +198,10 @@ const UsuarioPage = () => {
     {
       header: "Usuario",
       accessorKey: "usuario"
+    },
+    {
+      header: "Codigo",
+      accessorKey: "codigo"
     },
     {
       header: "Funcion",
