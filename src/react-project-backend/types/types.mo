@@ -7,8 +7,8 @@ module{
     description_permissions :Text;
     state : Text;
     user_created : Text;
-    creation_date : Text;
-    update_date : Text;
+    varcreation_date : Text;
+    var update_date : Text;
   };
 
    public type AdmRoles_Type = {

@@ -1,6 +1,8 @@
 import Text "mo:base/Text";
 import Trie "mo:base/Trie";
+import Int "mo:base/Int";
 import Iter "mo:base/Iter";
+import Time "mo:base/Time";
 import Types "./types/types";
 
 actor class Adm() {
@@ -9,6 +11,12 @@ actor class Adm() {
   func key(t : Text) : Key<Text> { { hash = Text.hash t; key = t } };
 
   public func createPermission(permission : Types.AdmPermissions_Type) : async Text {
+    
+let ahora : Time.Time = Time.now();
+
+// Convertir Time.Time (que es un Int) a Text
+let ahoraComoTexto : Text = Int.toText(ahora);
+permission.creation_date := ahoraComoTexto;
     permissionsADM := Trie.replace(
       permissionsADM,
       key(permission.id_permissions),
