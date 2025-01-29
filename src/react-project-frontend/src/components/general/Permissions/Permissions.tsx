@@ -1,11 +1,8 @@
 import { DataTable, Modal } from "@/components/general";
 import Layout from "@/components/layout";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useEffect, useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
 import { ContentModal } from "./components";
 import { ContentModalUpdate } from "./components";
 
@@ -27,7 +24,7 @@ export const Permissions = () => {
     const id_permissions = Math.random().toString(36).substring(2, 15);
     if (newData) {
       createPermission({
-        user_created: "user222",
+        user_created: "user222", // # TODO: cambiar por el usuario logueado
         permissions: newData.permiso,
         description_permissions: newData.descripcion,
         update_date: new Date().toISOString(),
@@ -38,20 +35,6 @@ export const Permissions = () => {
       });
       setOpen(false);
     }
-  };
-
-  const handleUpdatePermission = (item: any) => {
-    console.log(item, "item update");
-    createPermission({
-      user_created: "user222",
-      permissions: "permiso",
-      description_permissions: "descripcion 333",
-      update_date: new Date().toISOString(),
-      id_group: "group1",
-      state: "inactive",
-      id_permissions: item.id,
-      creation_date: new Date().toISOString()
-    });
   };
 
   const columns = [
