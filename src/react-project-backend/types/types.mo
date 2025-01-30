@@ -7,10 +7,19 @@ module{
     description_permissions :Text;
     state : Text;
     user_created : Text;
-    varcreation_date : Text;
-    var update_date : Text;
+    creation_date : Text;
+    update_date : Text;
   };
-
+   public type AdmPermissions_Type_shared = {
+    id_permissions  : Text;
+    id_group : Text;
+    permissions : Text;
+    description_permissions :Text;
+    state : Text;
+    user_created : Text;
+    creation_date : Text;
+    update_date : Text;
+  };
    public type AdmRoles_Type = {
     id_rol   : Text;
     id_group : Text;

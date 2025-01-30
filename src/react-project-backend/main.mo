@@ -16,15 +16,25 @@ let ahora : Time.Time = Time.now();
 
 // Convertir Time.Time (que es un Int) a Text
 let ahoraComoTexto : Text = Int.toText(ahora);
-permission.creation_date := ahoraComoTexto;
+let permission_DB:Types.AdmPermissions_Type = {
+  id_permissions  = permission.id_permissions;
+    id_group  = permission.id_group;
+    permissions = permission.permissions;
+    description_permissions = permission.description_permissions ;
+    state = permission.state;
+    user_created = permission.user_created;
+    creation_date = ahoraComoTexto;
+    update_date = ahoraComoTexto;
+};
+
     permissionsADM := Trie.replace(
       permissionsADM,
-      key(permission.id_permissions),
+      key(permission_DB.id_permissions),
       Text.equal,
-      ?permission,
+      ?permission_DB,
     ).0;
 
-    return permission.id_permissions;
+    return permission_DB.id_permissions;
   };
   public query func readPermissionId(id_permissions : Text) : async ?Types.AdmPermissions_Type {
     let result = Trie.find(permissionsADM, key(id_permissions), Text.equal);
