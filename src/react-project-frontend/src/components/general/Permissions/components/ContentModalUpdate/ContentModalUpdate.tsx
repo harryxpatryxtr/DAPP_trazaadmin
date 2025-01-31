@@ -12,24 +12,32 @@ import {
 
 type Inputs = {
   estado: string;
-  permiso: string;
   descripcion: string;
-  autor: string;
 };
 
-export const ContentModalUpdate = (
-  data: any,
-  setNewData: (data: any) => void
-) => {
-  console.log(data, "data");
+export const ContentModalUpdate = ({ data, setNewData }: any) => {
+  console.log(data, "data update");
+  // const { row } = data;
+  const { item } = data;
   const {
     handleSubmit,
     register,
+    setValue,
     formState: { errors }
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    // console.log(data);
-    setNewData(data);
+
+  const handleChangeState = (value: string) => {
+    setValue("estado", value);
+  };
+
+  const onSubmit: SubmitHandler<any> = (data) => {
+    console.log(data, "data update");
+    console.log(item, "item update");
+    const newData = {
+      id: item,
+      ...data
+    };
+    setNewData(newData);
   };
 
   return (
@@ -43,9 +51,9 @@ export const ContentModalUpdate = (
             id="username"
             defaultValue={data.description}
             className="col-span-3"
-            {...register("autor", { required: true })}
+            {...register("descripcion", { required: true })}
           />
-          {errors.autor && (
+          {errors.descripcion && (
             <span className="text-red-500 col-span-4 text-xs text-right">
               Este campo es requerido
             </span>
@@ -55,20 +63,15 @@ export const ContentModalUpdate = (
           <Label htmlFor="username" className="text-right">
             Estado
           </Label>
-          <Select>
+          <Select onValueChange={handleChangeState}>
             <SelectTrigger className="col-span-3">
-              <SelectValue placeholder="Select" defaultValue={data.state} />
+              <SelectValue placeholder="Select" defaultValue={data.estado} />
             </SelectTrigger>
             <SelectContent position="popper">
               <SelectItem value="active">Activo</SelectItem>
               <SelectItem value="inactive">Inactivo</SelectItem>
             </SelectContent>
           </Select>
-          {errors.estado && (
-            <span className="text-red-500 col-span-4 text-xs text-right">
-              Este campo es requerido
-            </span>
-          )}
         </div>
         <div>
           <Button type="submit">Guardar</Button>

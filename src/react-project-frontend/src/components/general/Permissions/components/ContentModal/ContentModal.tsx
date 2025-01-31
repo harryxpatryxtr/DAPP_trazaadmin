@@ -11,14 +11,14 @@ type Inputs = {
   autor: string;
 };
 
-export const ContentModal = (setNewData: (data: any) => void) => {
+export const ContentModal = ({ setNewData }: any) => {
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<any> = (data) => {
     setNewData(data);
   };
   return (

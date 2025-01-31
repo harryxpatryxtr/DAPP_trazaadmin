@@ -10,7 +10,7 @@ type Inputs = {
   estado: string;
   permiso: string;
   descripcion: string;
-  autor: string;
+  id?: string;
 };
 
 export const Permissions = () => {
@@ -22,6 +22,7 @@ export const Permissions = () => {
     usePermissions();
 
   const handleCreatePermission = () => {
+    console.log(newData, "newData comp");
     const id_permissions = Math.random().toString(36).substring(2, 15);
     if (!userData) {
       console.log("no userData");
@@ -33,18 +34,17 @@ export const Permissions = () => {
       return;
     }
     if (!user_created) {
-      console.log("no user_created");
       return;
     }
     createPermission({
       user_created: user_created,
       permissions: newData.permiso,
       description_permissions: newData.descripcion,
-      update_date: "", // TODO: se va
-      id_group: "group1", // TODO: se va
-      state: "active",
-      id_permissions: id_permissions,
-      creation_date: "2025-01-30"
+      update_date: "",
+      id_group: "",
+      state: newData.estado || "active",
+      id_permissions: newData.id || id_permissions,
+      creation_date: ""
     });
     setOpen(false);
   };
@@ -87,11 +87,7 @@ export const Permissions = () => {
           <Modal
             trigger={<Button>Editar</Button>}
             data={
-              <ContentModalUpdate
-                row={row.original}
-                setNewData={setNewData}
-                setOpen={setOpen}
-              />
+              <ContentModalUpdate data={row.original} setNewData={setNewData} />
             }
             subTitle="Editar el permiso"
             title="Editar"
@@ -104,7 +100,7 @@ export const Permissions = () => {
   const headerActions = [
     <Modal
       trigger={<Button>Nuevo</Button>}
-      data={ContentModal(setNewData)}
+      data={<ContentModal setNewData={setNewData} />}
       subTitle="Nuevo permiso"
       title="Nuevo"
       setOpen={() => setOpen(true)}
