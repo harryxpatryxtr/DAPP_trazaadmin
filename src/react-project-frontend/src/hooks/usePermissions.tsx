@@ -34,6 +34,7 @@ export const usePermissions = () => {
         id_permissions: permission.id_permissions || "",
         creation_date: permission.creation_date || ""
       }));
+      console.log(formattedData, "formattedData");
       setPermissions(formattedData);
     } catch (err: any) {
       console.error(err);

@@ -45,6 +45,18 @@ export const ContentModalUpdate = ({ data, setNewData }: any) => {
       <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 py-4">
         <div className="grid grid-cols-4 items-center gap-x-4">
           <Label htmlFor="username" className="text-right">
+            Código
+          </Label>
+          <span>{data.codigo}</span>
+        </div>
+        <div className="grid grid-cols-4 items-center gap-x-4">
+          <Label htmlFor="username" className="text-right">
+            Permiso
+          </Label>
+          <span>{data.permiso}</span>
+        </div>
+        <div className="grid grid-cols-4 items-center gap-x-4">
+          <Label htmlFor="username" className="text-right">
             Descripción
           </Label>
           <Input

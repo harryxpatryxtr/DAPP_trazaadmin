@@ -1,0 +1,1 @@
+export { ContentModalAssign } from "./ContentModalAssign";

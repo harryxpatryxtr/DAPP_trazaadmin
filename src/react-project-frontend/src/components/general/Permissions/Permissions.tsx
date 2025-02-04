@@ -22,15 +22,12 @@ export const Permissions = () => {
     usePermissions();
 
   const handleCreatePermission = () => {
-    console.log(newData, "newData comp");
     const id_permissions = Math.random().toString(36).substring(2, 15);
     if (!userData) {
-      console.log("no userData");
       return;
     }
     const user_created = userData.user_created;
     if (!newData) {
-      console.log("no newData");
       return;
     }
     if (!user_created) {
@@ -57,6 +54,11 @@ export const Permissions = () => {
       cell: ({ row }: { row: any }) => {
         return <p>{row.index + 1}</p>;
       }
+    },
+    {
+      id: "codigo",
+      header: "Código",
+      accessorKey: "codigo"
     },
     {
       id: "permiso",
@@ -127,6 +129,7 @@ export const Permissions = () => {
         item: permission.id_permissions,
         permiso: permission.permissions,
         description: permission.description_permissions,
+        codigo: permission.id_permissions,
         autor: userData.username,
         estado: permission.state
       }))

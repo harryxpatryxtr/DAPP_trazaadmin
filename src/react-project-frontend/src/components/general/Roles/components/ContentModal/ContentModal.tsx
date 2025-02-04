@@ -1,0 +1,67 @@
+import { Button } from "@/components/ui/button";
+import { useForm } from "react-hook-form";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { SubmitHandler } from "react-hook-form";
+
+type Inputs = {
+  rol: string;
+  descripcion: string;
+};
+
+export const ContentModal = ({
+  setNewData
+}: {
+  setNewData: (data: any) => void;
+}) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data, "data");
+    setNewData(data);
+  };
+
+  return (
+    <form className="grid gap-4 py-4" onSubmit={handleSubmit(onSubmit)}>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Rol
+        </Label>
+        <Input
+          className="col-span-3"
+          id="name"
+          placeholder="Rol"
+          {...register("rol", { required: true })}
+        />
+        {errors.rol && (
+          <span className="text-red-500 col-span-4 text-xs text-right">
+            Este campo es requerido
+          </span>
+        )}
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Descripcion
+        </Label>
+        <Input
+          className="col-span-3"
+          id="name"
+          placeholder="Descripcion"
+          {...register("descripcion", { required: true })}
+        />
+        {errors.descripcion && (
+          <span className="text-red-500 col-span-4 text-xs text-right">
+            Este campo es requerido
+          </span>
+        )}
+      </div>
+      <div className="flex justify-center">
+        <Button type="submit">Guardar</Button>
+      </div>
+    </form>
+  );
+};

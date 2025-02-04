@@ -1,0 +1,1 @@
+export { ContentModalUpdate } from "./ContentModalUpdate";
