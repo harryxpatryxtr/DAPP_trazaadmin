@@ -10,14 +10,6 @@ import {
 import { MultiSelect } from "@/components/ui/multi-select";
 import { Button } from "@/components/ui/button";
 
-const frameworksList = [
-  { value: "react", label: "React", icon: "T" },
-  { value: "angular", label: "Angular", icon: "C" },
-  { value: "vue", label: "Vue", icon: "D" },
-  { value: "svelte", label: "Svelte", icon: "R" },
-  { value: "ember", label: "Ember", icon: "F" }
-];
-
 export const ContentModalAssign = ({
   roles,
   permissions
@@ -27,9 +19,6 @@ export const ContentModalAssign = ({
 }) => {
   const [selectedRole, setSelectedRole] = useState<string>("");
   const [selectedFrameworks, setSelectedFrameworks] = useState<string[]>([]);
-
-  console.log(roles, "listRolesFetch new");
-  console.log(permissions, "permissions new");
   return (
     <div className="grid gap-4">
       <div className="grid grid-rows-2 items-center gap-1">
@@ -55,9 +44,9 @@ export const ContentModalAssign = ({
         </Label>
         <div className="flex">
           <MultiSelect
-            options={frameworksList.map((framework) => ({
-              label: framework.label,
-              value: framework.value
+            options={permissions.map((permission) => ({
+              label: permission.permissions,
+              value: permission.id_permissions
             }))}
             className="col-span-3"
             onValueChange={setSelectedFrameworks}

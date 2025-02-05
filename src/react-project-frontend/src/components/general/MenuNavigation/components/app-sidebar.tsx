@@ -71,20 +71,28 @@ const data = {
       ]
     },
     {
-      title: "Cadena de Producción",
+      title: "REO",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
+          title: "Ubigeo",
           url: "#"
         },
         {
-          title: "Explorer",
+          title: "Empresa",
           url: "#"
         },
         {
-          title: "Quantum",
+          title: "Fabrica",
+          url: "#"
+        },
+        {
+          title: "Marca",
+          url: "#"
+        },
+        {
+          title: "Usuario",
           url: "#"
         }
       ]

@@ -29,7 +29,7 @@ export const Roles = () => {
   } = usePermissions();
   const [open, setOpen] = useState(false);
   const userData = JSON.parse(localStorage.getItem("user") || "{}");
-
+  console.log(permissions, "permissions");
   const columns = [
     {
       header: "item",
@@ -117,6 +117,7 @@ export const Roles = () => {
 
   useEffect(() => {
     fetchRoles();
+    fetchPermissions();
   }, []);
 
   useEffect(() => {
