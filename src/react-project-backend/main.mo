@@ -9,32 +9,53 @@ actor class Adm() {
   private stable var permissionsADM : Trie.Trie<Text, Types.AdmPermissions_Type> = Trie.empty();
   type Key<K> = Trie.Key<K>;
   func key(t : Text) : Key<Text> { { hash = Text.hash t; key = t } };
-
+  private stable var permissionsKey: Int = 0;
   public func createPermission(permission : Types.AdmPermissions_Type) : async Text {
-    
-let ahora : Time.Time = Time.now();
+  let ahora : Time.Time = Time.now();
 
 // Convertir Time.Time (que es un Int) a Text
-let ahoraComoTexto : Text = Int.toText(ahora);
-let permission_DB:Types.AdmPermissions_Type = {
-  id_permissions  = permission.id_permissions;
-    id_group  = permission.id_group;
-    permissions = permission.permissions;
-    description_permissions = permission.description_permissions ;
-    state = permission.state;
-    user_created = permission.user_created;
-    creation_date = ahoraComoTexto;
-    update_date = ahoraComoTexto;
-};
+  let ahoraComoTexto : Text = Int.toText(ahora);
 
-    permissionsADM := Trie.replace(
+  switch (Trie.get(permissionsADM, key(permission.id_permissions), Text.equal)) {
+      case (null) {
+        // Acción cuando no se encuentra el elemento
+        let permission_DB:Types.AdmPermissions_Type = {
+      id_permissions  = Int.toText(permissionsKey);
+      permissions = permission.permissions;
+      description_permissions = permission.description_permissions ;
+      state = permission.state;
+      user_created = permission.user_created;
+      creation_date = ahoraComoTexto;
+      update_date = permission.update_date;
+  };
+  permissionsADM := Trie.replace(
       permissionsADM,
       key(permission_DB.id_permissions),
       Text.equal,
       ?permission_DB,
     ).0;
 
-    return permission_DB.id_permissions;
+  permissionsKey := permissionsKey+1; 
+      };
+      case (?value) {
+        let permission_DB:Types.AdmPermissions_Type = {
+        id_permissions  = permission.id_permissions;
+        permissions = permission.permissions;
+        description_permissions = permission.description_permissions ;
+        state = value.state;
+        user_created = value.user_created;
+        creation_date = value.creation_date;
+        update_date = ahoraComoTexto;
+    };
+    permissionsADM := Trie.replace(
+      permissionsADM,
+      key(permission_DB.id_permissions),
+      Text.equal,
+      ?permission_DB,
+    ).0;
+      };
+    };
+    return permission.id_permissions;
   };
   public query func readPermissionId(id_permissions : Text) : async ?Types.AdmPermissions_Type {
     let result = Trie.find(permissionsADM, key(id_permissions), Text.equal);

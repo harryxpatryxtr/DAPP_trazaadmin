@@ -1,8 +1,8 @@
+import Int "mo:base/Int";
 module{
 
    public type AdmPermissions_Type = {
     id_permissions  : Text;
-    id_group : Text;
     permissions : Text;
     description_permissions :Text;
     state : Text;
@@ -10,19 +10,9 @@ module{
     creation_date : Text;
     update_date : Text;
   };
-   public type AdmPermissions_Type_shared = {
-    id_permissions  : Text;
-    id_group : Text;
-    permissions : Text;
-    description_permissions :Text;
-    state : Text;
-    user_created : Text;
-    creation_date : Text;
-    update_date : Text;
-  };
+
    public type AdmRoles_Type = {
     id_rol   : Text;
-    id_group : Text;
     rol : Text;
     description_rol :Text;
     state : Text;
@@ -35,7 +25,6 @@ module{
     id_rol_permissions    : Text;
     id_permissions : Text;
     id_rol : Text;
-    id_group :Text;
     state : Text;
     user_created : Text;
     creation_date : Text;
@@ -44,7 +33,6 @@ module{
 
   public type TypeUser_Type = {
     id_type_user : Text;
-    id_group : Text;
     type_user : Text;
     description_type_user : Text;
     state : Text;
@@ -55,7 +43,6 @@ module{
 
  public type TypeDocument_Type = {
     id_type_document  : Text;
-    id_group : Text;
     type_document : Text;
     description_type_document : Text;
     state : Text;
@@ -69,7 +56,6 @@ module{
     id_user   : Text;
     id_type_user : Text;
     id_type_document : Text;
-    id_group : Text;
     user : Text;
     email : Text;
     password : Text;
@@ -88,7 +74,6 @@ module{
     id_rol_user    : Text;
     id_user: Text;
     id_rol : Text;
-    id_group : Text;
     state : Text;
     user_created : Text;
     creation_date : Text;
