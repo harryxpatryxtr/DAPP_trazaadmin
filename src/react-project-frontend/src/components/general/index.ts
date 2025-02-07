@@ -6,3 +6,5 @@ export * from "./Roles";
 export * from "./DropDownTypeUsers";
 export * from "./DropDownTypeDocument";
 export * from "./DropDownTypeFunction";
+export * from "./Company";
+export * from "./UbigeoSelect";

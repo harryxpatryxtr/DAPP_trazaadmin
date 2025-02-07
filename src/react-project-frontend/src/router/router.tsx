@@ -5,24 +5,21 @@ import HomePage from "../pages/HomePage";
 import PermisoPage from "../pages/PermisoPage";
 import RolPage from "@/pages/RolPage";
 import UsuarioPage from "@/pages/UsuarioPage";
+import EmpresaPage from "@/pages/EmpresaPage";
 
 const AppRoutes: React.FC = () => {
   return (
     <Router>
       <Routes>
-        {/* Página de login */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/permiso" element={<PermisoPage />} />
         <Route path="/rol" element={<RolPage />} />
         <Route path="/usuario" element={<UsuarioPage />} />
-        {/* Página principal */}
-        {/* <Route path="/" element={<HomePage />} /> */}
+        <Route path="/empresa" element={<EmpresaPage />} />
+        <Route path="/home" element={<HomePage />} />
 
         {/* Ruta para manejar errores 404 */}
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />
-
-        {/* Ruta para Home */}
-        <Route path="/home" element={<HomePage />} />
       </Routes>
     </Router>
   );

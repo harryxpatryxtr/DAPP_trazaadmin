@@ -111,7 +111,6 @@ export const Permissions = () => {
   ];
 
   useEffect(() => {
-    console.log(newData, "newData1");
     if (newData) {
       handleCreatePermission();
       setOpen(false);
@@ -123,7 +122,6 @@ export const Permissions = () => {
   }, []);
 
   useEffect(() => {
-    console.log(permissions, "permissions");
     setData(
       permissions.map((permission) => ({
         item: permission.id_permissions,

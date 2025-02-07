@@ -1,16 +1,19 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { Button } from "@/components/ui/button";
 
-type Inputs = {
-  estado: string;
-  permiso: string;
-  descripcion: string;
-  autor: string;
+type ModalCannisterProps = {
+  setNewData: (data: any) => void;
 };
 
-export const ContentModal = ({ setNewData }: any) => {
+type Inputs = {
+  companyId: string;
+  idCannisterData: string;
+  idCannisterAssets: string;
+};
+
+export const ModalCannister = ({ setNewData }: ModalCannisterProps) => {
   const {
     register,
     handleSubmit,
@@ -18,47 +21,50 @@ export const ContentModal = ({ setNewData }: any) => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<any> = (data) => {
+    console.log(data);
     setNewData(data);
   };
   return (
     <div>
-      <form className="grid gap-4 py-4" onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-4 items-center gap-x-4">
           <Label htmlFor="name" className="text-right">
-            Permiso
+            Empresa
+          </Label>
+        </div>
+        <div className="grid grid-cols-4 items-center gap-x-4">
+          <Label htmlFor="name" className="text-right">
+            ID Cannister Data
           </Label>
           <Input
             id="name"
             defaultValue={""}
             className="col-span-3"
-            {...register("permiso", { required: true })}
+            {...register("idCannisterData", { required: true })}
           />
-          {errors.permiso && (
+          {errors.idCannisterData && (
             <span className="text-red-500 col-span-4 text-xs text-right">
               Este campo es requerido
             </span>
           )}
         </div>
         <div className="grid grid-cols-4 items-center gap-x-4">
-          <Label htmlFor="username" className="text-right">
-            Descripción
+          <Label htmlFor="name" className="text-right">
+            ID Cannister Assets
           </Label>
           <Input
-            id="username"
+            id="name"
             defaultValue={""}
             className="col-span-3"
-            {...register("descripcion", { required: true })}
+            {...register("idCannisterAssets", { required: true })}
           />
-          {errors.descripcion && (
+          {errors.idCannisterAssets && (
             <span className="text-red-500 col-span-4 text-xs text-right">
               Este campo es requerido
             </span>
           )}
         </div>
-
-        <div>
-          <Button type="submit">Crear</Button>
-        </div>
+        <Button type="submit">Actualizar</Button>
       </form>
     </div>
   );
