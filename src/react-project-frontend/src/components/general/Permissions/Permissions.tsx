@@ -38,7 +38,6 @@ export const Permissions = () => {
       permissions: newData.permiso,
       description_permissions: newData.descripcion,
       update_date: "",
-      id_group: "",
       state: newData.estado || "active",
       id_permissions: newData.id || id_permissions,
       creation_date: ""

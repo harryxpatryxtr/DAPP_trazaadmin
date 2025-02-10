@@ -6,7 +6,6 @@ interface Permission {
   permissions: string;
   description_permissions: string;
   update_date: string;
-  id_group: string;
   state: string;
   id_permissions: string;
   creation_date: string;
@@ -29,7 +28,6 @@ export const usePermissions = () => {
         permissions: permission.permissions || "",
         description_permissions: permission.description_permissions || "",
         update_date: permission.update_date || "",
-        id_group: permission.id_group || "",
         state: permission.state || "",
         id_permissions: permission.id_permissions || "",
         creation_date: permission.creation_date || ""

@@ -6,7 +6,6 @@ interface Role {
   user_created: string;
   description_rol: string;
   update_date: string;
-  id_group: string;
   state: string;
   id_rol: string;
   creation_date: string;
@@ -27,7 +26,6 @@ export const useRoles = () => {
         user_created: role.user_created,
         description_rol: role.description_rol,
         update_date: role.update_date,
-        id_group: role.id_group,
         state: role.state,
         id_rol: role.id_rol,
         creation_date: role.creation_date

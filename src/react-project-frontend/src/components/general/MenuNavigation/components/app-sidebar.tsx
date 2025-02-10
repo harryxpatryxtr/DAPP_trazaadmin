@@ -8,6 +8,7 @@ import {
   Command,
   Frame,
   GalleryVerticalEnd,
+  Home,
   Map,
   PieChart,
   Settings2,
@@ -51,10 +52,39 @@ const data = {
   ],
   navMain: [
     {
+      title: "Inicio",
+      url: "/",
+      icon: Home
+    },
+    {
+      title: "Configuracion",
+      url: "/configuracion",
+      icon: Settings2,
+      items: [
+        {
+          title: "Dominio",
+          url: "/configuracion/dominio"
+        },
+        {
+          title: "Tipo Usuario",
+          url: "/configuracion/tipo-usuario"
+        },
+        {
+          title: "Tipo Documento",
+          url: "/configuracion/tipo-documento"
+        },
+        {
+          title: "Tipo Cargo",
+          url: "/configuracion/tipo-cargo"
+        }
+      ]
+    },
+    {
       title: "Administrador",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
+
       items: [
         {
           title: "Permiso",
@@ -76,19 +106,7 @@ const data = {
       icon: Bot,
       items: [
         {
-          title: "Ubigeo",
-          url: "#"
-        },
-        {
           title: "Empresa",
-          url: "#"
-        },
-        {
-          title: "Fabrica",
-          url: "#"
-        },
-        {
-          title: "Marca",
           url: "#"
         },
         {

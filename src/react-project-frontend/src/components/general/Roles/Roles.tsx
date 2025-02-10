@@ -29,7 +29,6 @@ export const Roles = () => {
   } = usePermissions();
   const [open, setOpen] = useState(false);
   const userData = JSON.parse(localStorage.getItem("user") || "{}");
-  console.log(permissions, "permissions");
   const columns = [
     {
       header: "item",
@@ -100,7 +99,6 @@ export const Roles = () => {
         rol: newData.rol || "",
         description_rol: newData.descripcion || "",
         update_date: "",
-        id_group: "",
         state: "active",
         id_rol: id_rol,
         creation_date: ""
