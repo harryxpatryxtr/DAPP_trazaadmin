@@ -2,81 +2,81 @@ import Int "mo:base/Int";
 module{
 
    public type AdmPermissions_Type = {
-    id_permissions  : Text;
+    idPermissions  : Text;
     permissions : Text;
-    description_permissions :Text;
+    descriptionPermissions :Text;
     state : Text;
-    user_created : Text;
-    creation_date : Text;
-    update_date : Text;
+    userCreated : Text;
+    creationDate : Text;
+    updateDate : Text;
   };
 
    public type AdmRoles_Type = {
-    id_rol   : Text;
+    idRol   : Text;
     rol : Text;
-    description_rol :Text;
+    descriptionRol :Text;
     state : Text;
-    user_created : Text;
-    creation_date : Text;
-    update_date : Text;
+    userCreated : Text;
+    creationDate : Text;
+    updateDate : Text;
   };
 
   public type AdmRolPermissions_Type = {
-    id_rol_permissions    : Text;
-    id_permissions : Text;
-    id_rol : Text;
+    idRolPermissions    : Text;
+    idPermissions : Text;
+    idRol : Text;
     state : Text;
-    user_created : Text;
-    creation_date : Text;
-    update_date : Text;
+    userCreated : Text;
+    creationDate : Text;
+    updateDate : Text;
   };
 
   public type TypeUser_Type = {
-    id_type_user : Text;
-    type_user : Text;
-    description_type_user : Text;
+    idTypeUser : Text;
+    typeUser : Text;
+    descriptionTypeUser : Text;
     state : Text;
-    user_created : Text;
-    creation_date : Text;
-    update_date : Text;
+    userCreated : Text;
+    creationDate : Text;
+    updateDate : Text;
   };
 
  public type TypeDocument_Type = {
-    id_type_document  : Text;
-    type_document : Text;
-    description_type_document : Text;
+    idTypeDocument  : Text;
+    typeDocument : Text;
+    descriptionTypeDocument : Text;
     state : Text;
-    user_created : Text;
-    creation_date : Text;
-    update_date : Text;
+    userCreated : Text;
+    creationDate : Text;
+    updateDate : Text;
   };
 
 
   public type User_Type = {
-    id_user   : Text;
-    id_type_user : Text;
-    id_type_document : Text;
+    idUser   : Text;
+    idTypeUser : Text;
+    idTypeDocument : Text;
     user : Text;
     email : Text;
     password : Text;
-    nro_document : Text;
+    nroDocument : Text;
     name : Text;
     paternal_surname: Text;
     maternal_surname : Text;
     photo_user : Text;
     state : Text;
-    user_created : Text;
-    creation_date : Text;
-    update_date : Text;
+    userCreated : Text;
+    creationDate : Text;
+    updateDate : Text;
   };
 
   public type RolUser_Type = {
-    id_rol_user    : Text;
-    id_user: Text;
-    id_rol : Text;
+    idRolUser : Text;
+    idUser: Text;
+    idRol : Text;
     state : Text;
-    user_created : Text;
-    creation_date : Text;
-    update_date : Text;
+    userCreated : Text;
+    creationDate : Text;
+    updateDate : Text;
   };
 }
