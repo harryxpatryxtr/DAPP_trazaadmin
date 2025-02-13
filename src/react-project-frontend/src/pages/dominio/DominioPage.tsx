@@ -1,7 +1,7 @@
-import { Company } from "@/components/general/Company";
+import Dominio from "@/components/general/Settings/Dominio";
 
 const EmpresaPage = () => {
-  return <Company />;
+  return <Dominio />;
 };
 
 export default EmpresaPage;

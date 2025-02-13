@@ -6,6 +6,7 @@ import PermisoPage from "../pages/PermisoPage";
 import RolPage from "@/pages/RolPage";
 import UsuarioPage from "@/pages/UsuarioPage";
 import EmpresaPage from "@/pages/EmpresaPage";
+import DominioPage from "@/pages/dominio/DominioPage";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/usuario" element={<UsuarioPage />} />
         <Route path="/empresa" element={<EmpresaPage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/configuracion/dominio" element={<DominioPage />} />
 
         {/* Ruta para manejar errores 404 */}
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />

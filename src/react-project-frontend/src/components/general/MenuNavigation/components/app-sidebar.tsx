@@ -114,34 +114,6 @@ const data = {
           url: "#"
         }
       ]
-    },
-    {
-      title: "Proveedores",
-      url: "#",
-      icon: BookOpen
-    },
-    {
-      title: "Compliance",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#"
-        },
-        {
-          title: "Team",
-          url: "#"
-        },
-        {
-          title: "Billing",
-          url: "#"
-        },
-        {
-          title: "Limits",
-          url: "#"
-        }
-      ]
     }
   ]
 };

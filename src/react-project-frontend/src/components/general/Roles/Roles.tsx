@@ -91,7 +91,6 @@ export const Roles = () => {
   ];
 
   const handleCreateRole = () => {
-    console.log(newData, "newData");
     if (newData) {
       const id_rol = Math.random().toString(36).substring(2, 15);
       createRole({
