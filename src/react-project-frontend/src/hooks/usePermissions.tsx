@@ -2,13 +2,13 @@ import { useState } from "react";
 import { react_project_backend } from "../../../declarations/react-project-backend";
 
 interface Permission {
-  user_created: string;
+  userCreated: string;
   permissions: string;
-  description_permissions: string;
-  update_date: string;
+  descriptionPermissions: string;
+  updateDate: string;
   state: string;
-  id_permissions: string;
-  creation_date: string;
+  idPermissions: string;
+  creationDate: string;
 }
 
 export const usePermissions = () => {
@@ -24,18 +24,16 @@ export const usePermissions = () => {
       const data = await react_project_backend.readAllPermissions();
       // Transform the data to match Permission interface
       const formattedData = data.map(([_, permission]) => ({
-        user_created: permission.user_created,
+        userCreated: permission.userCreated || "",
         permissions: permission.permissions || "",
-        description_permissions: permission.description_permissions || "",
-        update_date: permission.update_date || "",
+        descriptionPermissions: permission.descriptionPermissions || "",
+        updateDate: permission.updateDate || "",
         state: permission.state || "",
-        id_permissions: permission.id_permissions || "",
-        creation_date: permission.creation_date || ""
+        idPermissions: permission.idPermissions || "",
+        creationDate: permission.creationDate || ""
       }));
-      console.log(formattedData, "formattedData");
       setPermissions(formattedData);
     } catch (err: any) {
-      console.error(err);
       setError("Error al cargar los permisos.");
     } finally {
       setLoading(false);
@@ -43,7 +41,6 @@ export const usePermissions = () => {
   };
 
   const createPermission = async (permission: Permission) => {
-    console.log(permission, "permission create");
     setLoading(true);
     setError(null);
     try {
@@ -51,7 +48,6 @@ export const usePermissions = () => {
       // Opcional: Refrescar la lista de permisos después de crear
       await fetchPermissions();
     } catch (err: any) {
-      console.error(err);
       setError("Error al crear el permiso.");
     } finally {
       setLoading(false);

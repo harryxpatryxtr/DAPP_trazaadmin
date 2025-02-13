@@ -94,13 +94,13 @@ export const Roles = () => {
     if (newData) {
       const id_rol = Math.random().toString(36).substring(2, 15);
       createRole({
-        user_created: userData.user_created,
+        userCreated: userData.userCreated,
         rol: newData.rol || "",
-        description_rol: newData.descripcion || "",
-        update_date: "",
+        descriptionRol: newData.descripcion || "",
+        updateDate: "",
         state: "active",
-        id_rol: id_rol,
-        creation_date: ""
+        idRol: id_rol,
+        creationDate: ""
       });
       setOpen(false);
     }
@@ -120,10 +120,10 @@ export const Roles = () => {
   useEffect(() => {
     setData(
       roles.map((role) => ({
-        id: role.id_rol,
-        item: role.id_rol,
+        id: role.idRol,
+        item: role.idRol,
         rol: role.rol,
-        descripcion: role.description_rol,
+        descripcion: role.descriptionRol,
         autor: userData.username,
         estado: role.state
       }))
@@ -133,10 +133,10 @@ export const Roles = () => {
   useEffect(() => {
     setDataPermissions(
       permissions.map((permission) => ({
-        id: permission.id_permissions,
-        item: permission.id_permissions,
+        id: permission.idPermissions,
+        item: permission.idPermissions,
         permiso: permission.permissions,
-        descripcion: permission.description_permissions,
+        descripcion: permission.descriptionPermissions,
         autor: userData.username,
         estado: permission.state
       }))

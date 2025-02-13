@@ -3,12 +3,12 @@ import { react_project_backend } from "../../../declarations/react-project-backe
 
 interface Role {
   rol: string;
-  user_created: string;
-  description_rol: string;
-  update_date: string;
+  userCreated: string;
+  descriptionRol: string;
+  updateDate: string;
   state: string;
-  id_rol: string;
-  creation_date: string;
+  idRol: string;
+  creationDate: string;
 }
 
 export const useRoles = () => {
@@ -23,12 +23,12 @@ export const useRoles = () => {
       const data = await react_project_backend.readAllRoles();
       const formattedData = data.map(([_, role]) => ({
         rol: role.rol,
-        user_created: role.user_created,
-        description_rol: role.description_rol,
-        update_date: role.update_date,
+        userCreated: role.userCreated,
+        descriptionRol: role.descriptionRol,
+        updateDate: role.updateDate,
         state: role.state,
-        id_rol: role.id_rol,
-        creation_date: role.creation_date
+        idRol: role.idRol,
+        creationDate: role.creationDate
       }));
       setRoles(formattedData);
     } catch (err: any) {

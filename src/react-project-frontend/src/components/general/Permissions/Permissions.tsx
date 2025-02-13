@@ -34,13 +34,13 @@ export const Permissions = () => {
       return;
     }
     createPermission({
-      user_created: user_created,
+      userCreated: user_created,
       permissions: newData.permiso,
-      description_permissions: newData.descripcion,
-      update_date: "",
+      descriptionPermissions: newData.descripcion,
+      updateDate: "",
       state: newData.estado || "active",
-      id_permissions: newData.id || id_permissions,
-      creation_date: ""
+      idPermissions: newData.id || id_permissions,
+      creationDate: ""
     });
     setOpen(false);
   };
@@ -123,10 +123,10 @@ export const Permissions = () => {
   useEffect(() => {
     setData(
       permissions.map((permission) => ({
-        item: permission.id_permissions,
+        item: permission.idPermissions,
         permiso: permission.permissions,
-        description: permission.description_permissions,
-        codigo: permission.id_permissions,
+        description: permission.descriptionPermissions,
+        codigo: permission.idPermissions,
         autor: userData.username,
         estado: permission.state
       }))

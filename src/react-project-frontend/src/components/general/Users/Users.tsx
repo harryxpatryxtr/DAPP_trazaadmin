@@ -90,10 +90,10 @@ export const Users = () => {
     if (newData) {
       handleCreateUser({
         ...newData,
-        user_created: userData.user_created,
-        creation_date: userData.creation_date || "",
-        update_date: userData.update_date || "",
-        id_group: userData.id_group || "",
+        userCreated: userData.userCreated,
+        creationDate: userData.creationDate || "",
+        updateDate: userData.updateDate || "",
+        idGroup: userData.idGroup || "",
         state: userData.state || "activo"
       });
       setOpen(false);

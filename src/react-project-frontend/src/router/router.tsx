@@ -8,6 +8,8 @@ import UsuarioPage from "@/pages/UsuarioPage";
 import EmpresaPage from "@/pages/EmpresaPage";
 import DominioPage from "@/pages/DominioPage";
 import TypeDocumentPage from "@/pages/TypeDocumentPage";
+import TypeUserPage from "@/pages/TypeUserPage";
+
 const AppRoutes: React.FC = () => {
   return (
     <Router>
@@ -23,6 +25,7 @@ const AppRoutes: React.FC = () => {
           path="/configuracion/tipo-documento"
           element={<TypeDocumentPage />}
         />
+        <Route path="/configuracion/tipo-usuario" element={<TypeUserPage />} />
         {/* Ruta para manejar errores 404 */}
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />
       </Routes>

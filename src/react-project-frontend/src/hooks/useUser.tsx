@@ -4,7 +4,7 @@ interface User {
   codigo: string;
   email: string;
   typeDocument: string;
-  user_created: string;
+  userCreated: string;
   name: string;
   state: string;
 }
@@ -22,14 +22,14 @@ export const useUser = () => {
       const transformedData = data.map((user) => {
         console.log(user, "user iteracion");
         return {
-          codigo: user[1].id_user,
+          codigo: user[1].idUser,
           email: user[1].email,
-          typeDocument: user[1].id_type_document,
-          user_created: user[1].user_created,
+          typeDocument: user[1].idTypeDocument,
+          userCreated: user[1].userCreated,
           name: `${user[1].name} ${user[1].maternal_surname} ${user[1].paternal_surname}`,
           state: user[1].state,
-          idTypeDocument: user[1].id_type_document,
-          nroDocument: user[1].nro_document,
+          idTypeDocument: user[1].idTypeDocument,
+          nroDocument: user[1].nroDocument,
           password: user[1].password,
           maternalSurname: user[1].maternal_surname,
           paternalSurname: user[1].paternal_surname
