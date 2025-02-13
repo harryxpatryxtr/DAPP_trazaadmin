@@ -6,16 +6,274 @@ import Time "mo:base/Time";
 import Types "./types/types";
 
 actor class Adm() {
-  private stable var permissionsADM : Trie.Trie<Text, Types.AdmPermissions_Type> = Trie.empty();
   type Key<K> = Trie.Key<K>;
   func key(t : Text) : Key<Text> { { hash = Text.hash t; key = t } };
+
+  private stable var informationSet : Trie.Trie<Text, Types.SetGroupInformations_Type> = Trie.empty();
+  private stable var informationSetKey: Int = 0;
+
+  public func createInformationSet(informationReq : Types.SetGroupInformations_Type) : async Text {
+  let ahora : Time.Time = Time.now();
+  let ahoraComoTexto : Text = Int.toText(ahora);
+  
+  switch (Trie.get(informationSet, key(informationReq.idGroupInformation), Text.equal)) {
+      case (null) {
+        // Acción cuando no se encuentra el elemento
+      let informationDB:Types.SetGroupInformations_Type = {
+        idGroupInformation  = Int.toText(informationSetKey);
+        groupInformationName = informationReq.groupInformationName;
+        groupInformationDescription = informationReq.groupInformationDescription ;
+        state = informationReq.state;
+        userCreated = informationReq.userCreated;
+        creationDate = ahoraComoTexto;
+        userUpdate = informationReq.userUpdate;
+        updateDate = informationReq.updateDate;
+    };
+
+  informationSet := Trie.replace(
+      informationSet,
+      key(informationDB.idGroupInformation),
+      Text.equal,
+      ?informationDB,
+    ).0;
+
+  informationSetKey := informationSetKey+1; 
+      };
+      case (?value) {
+        let informationDB:Types.SetGroupInformations_Type = {
+        idGroupInformation  = informationReq.idGroupInformation;
+        groupInformationName = informationReq.groupInformationName;
+        groupInformationDescription = informationReq.groupInformationDescription ;
+        state = value.state;
+        userCreated = value.userCreated;
+        creationDate = value.creationDate;
+        userUpdate = informationReq.userUpdate;
+        updateDate = ahoraComoTexto;
+    };
+    informationSet := Trie.replace(
+      informationSet,
+      key(informationDB.idGroupInformation),
+      Text.equal,
+      ?informationDB,
+    ).0;
+      };
+    };
+    return informationReq.idGroupInformation;
+  };
+  public query func readGroupInformationId(idGroupInformation : Text) : async ?Types.SetGroupInformations_Type {
+    let result = Trie.find(informationSet, key(idGroupInformation), Text.equal);
+    return result;
+  };
+
+  public query func readAllGroupInformations() : async [(Text, Types.SetGroupInformations_Type)] {
+    let result = Iter.toArray(Trie.iter(informationSet));
+    return result;
+  }; 
+  
+
+  private stable var userTypeSet : Trie.Trie<Text, Types.SetUserType_Type> = Trie.empty();
+  private stable var userTypeSetKey: Int = 0;
+
+  public func createUserTypeSet(userTypeSetReq : Types.SetUserType_Type) : async Text {
+
+  let ahora : Time.Time = Time.now();
+  let ahoraComoTexto : Text = Int.toText(ahora);
+  
+  switch (Trie.get(userTypeSet, key(userTypeSetReq.idTypeUser), Text.equal)) {
+      case (null) {
+        // Acción cuando no se encuentra el elemento
+      let userTypeSetDB :Types.SetUserType_Type = {
+        idTypeUser  = Int.toText(informationSetKey);
+        typeUser = userTypeSetReq.typeUser;
+        descriptionTypeUser = userTypeSetReq.descriptionTypeUser ;
+        state = userTypeSetReq.state;
+        userCreated = userTypeSetReq.userCreated;
+        creationDate = ahoraComoTexto;
+        userUpdate = userTypeSetReq.userUpdate;
+        updateDate = userTypeSetReq.updateDate;
+    };
+
+  userTypeSet := Trie.replace(
+      userTypeSet,
+      key(userTypeSetDB.idTypeUser),
+      Text.equal,
+      ?userTypeSetDB,
+    ).0;
+
+  userTypeSetKey := userTypeSetKey+1; 
+      };
+      case (?value) {
+        let userTypeSetDB:Types.SetUserType_Type = {
+        idTypeUser  = userTypeSetReq.idTypeUser;
+        typeUser = userTypeSetReq.typeUser;
+        descriptionTypeUser = userTypeSetReq.descriptionTypeUser ;
+        state = value.state;
+        userCreated = value.userCreated;
+        creationDate = value.creationDate;
+        userUpdate = userTypeSetReq.userUpdate;
+        updateDate = ahoraComoTexto;
+    };
+    userTypeSet := Trie.replace(
+      userTypeSet,
+      key(userTypeSetDB.idTypeUser),
+      Text.equal,
+      ?userTypeSetDB,
+    ).0;
+      };
+    };
+    return userTypeSetReq.idTypeUser;
+  };
+  public query func readUserTypeSetId(idTypeUser : Text) : async ?Types.SetUserType_Type {
+    let result = Trie.find(userTypeSet, key(idTypeUser), Text.equal);
+    return result;
+  };
+
+  public query func readAllUserTypeSet() : async [(Text, Types.SetUserType_Type)] {
+    let result = Iter.toArray(Trie.iter(userTypeSet));
+    return result;
+  }; 
+
+
+
+
+
+
+
+ private stable var documentTypeSet : Trie.Trie<Text, Types.SetDocumentType_Type> = Trie.empty();
+  private stable var documentTypeSetKey: Int = 0;
+
+  public func createDocumentTypeSet(documentTypeReq : Types.SetDocumentType_Type) : async Text {
+  let ahora : Time.Time = Time.now();
+  let ahoraComoTexto : Text = Int.toText(ahora);
+  
+  switch (Trie.get(documentTypeSet, key(documentTypeReq.idTypeDocument), Text.equal)) {
+      case (null) {
+        // Acción cuando no se encuentra el elemento
+      let documentTypeDB:Types.SetDocumentType_Type = {
+        idTypeDocument  = Int.toText(documentTypeSetKey);
+        typeDocument = documentTypeReq.typeDocument;
+        descriptionTypeDocument = documentTypeReq.descriptionTypeDocument ;
+        state = documentTypeReq.state;
+        userCreated = documentTypeReq.userCreated;
+        creationDate = ahoraComoTexto;
+        userUpdate = documentTypeReq.userUpdate;
+        updateDate = documentTypeReq.updateDate;
+    };
+
+  documentTypeSet := Trie.replace(
+      documentTypeSet,
+      key(documentTypeDB.idTypeDocument),
+      Text.equal,
+      ?documentTypeDB,
+    ).0;
+
+  documentTypeSetKey := documentTypeSetKey+1; 
+      };
+      case (?value) {
+        let documentTypeDB:Types.SetDocumentType_Type = {
+        idTypeDocument  = documentTypeReq.idTypeDocument;
+        typeDocument = documentTypeReq.typeDocument;
+        descriptionTypeDocument = documentTypeReq.descriptionTypeDocument ;
+        state = value.state;
+        userCreated = value.userCreated;
+        creationDate = value.creationDate;
+        userUpdate = documentTypeReq.userUpdate;
+        updateDate = ahoraComoTexto;
+    };
+    documentTypeSet := Trie.replace(
+      documentTypeSet,
+      key(documentTypeDB.idTypeDocument),
+      Text.equal,
+      ?documentTypeDB,
+    ).0;
+      };
+    };
+    return documentTypeReq.idTypeDocument;
+  };
+  public query func readDocumentTypeSetId(idTypeDocument : Text) : async ?Types.SetDocumentType_Type {
+    let result = Trie.find(documentTypeSet, key(idTypeDocument), Text.equal);
+    return result;
+  };
+
+  public query func readAllDocumentTypeSet() : async [(Text, Types.SetDocumentType_Type)] {
+    let result = Iter.toArray(Trie.iter(documentTypeSet));
+    return result;
+  }; 
+
+
+
+
+
+ private stable var cargoTypeSet : Trie.Trie<Text, Types.SetCargoType_Type> = Trie.empty();
+  private stable var cargoTypeSetKey: Int = 0;
+
+  public func createCargoTypeSet(cargoTypeReq : Types.SetCargoType_Type) : async Text {
+  let ahora : Time.Time = Time.now();
+  let ahoraComoTexto : Text = Int.toText(ahora);
+  
+  switch (Trie.get(cargoTypeSet, key(cargoTypeReq.idTypeCargo), Text.equal)) {
+      case (null) {
+        // Acción cuando no se encuentra el elemento
+      let cargoTypeDB:Types.SetCargoType_Type = {
+        idTypeCargo  = Int.toText(cargoTypeSetKey);
+        typeCargo = cargoTypeReq.typeCargo;
+        descriptionTypeCargo = cargoTypeReq.descriptionTypeCargo ;
+        state = cargoTypeReq.state;
+        userCreated = cargoTypeReq.userCreated;
+        creationDate = ahoraComoTexto;
+        userUpdate = cargoTypeReq.userUpdate;
+        updateDate = cargoTypeReq.updateDate;
+    };
+
+  cargoTypeSet := Trie.replace(
+      cargoTypeSet,
+      key(cargoTypeDB.idTypeCargo),
+      Text.equal,
+      ?cargoTypeDB,
+    ).0;
+
+  cargoTypeSetKey := cargoTypeSetKey+1; 
+      };
+      case (?value) {
+        let cargoTypeDB:Types.SetCargoType_Type = {
+        idTypeCargo  = cargoTypeReq.idTypeCargo;
+        typeCargo = cargoTypeReq.typeCargo;
+        descriptionTypeCargo = cargoTypeReq.descriptionTypeCargo ;
+        state = value.state;
+        userCreated = value.userCreated;
+        creationDate = value.creationDate;
+        userUpdate = cargoTypeReq.userUpdate;
+        updateDate = ahoraComoTexto;
+    };
+    cargoTypeSet := Trie.replace(
+      cargoTypeSet,
+      key(cargoTypeDB.idTypeCargo),
+      Text.equal,
+      ?cargoTypeDB,
+    ).0;
+      };
+    };
+    return cargoTypeReq.idTypeCargo;
+  };
+  public query func readCargoTypeSetId(idTypeCargo : Text) : async ?Types.SetCargoType_Type {
+    let result = Trie.find(cargoTypeSet, key(idTypeCargo), Text.equal);
+    return result;
+  };
+
+  public query func readAllTypeSet() : async [(Text, Types.SetCargoType_Type)] {
+    let result = Iter.toArray(Trie.iter(cargoTypeSet));
+    return result;
+  }; 
+
+
+
+
+
+  private stable var permissionsADM : Trie.Trie<Text, Types.AdmPermissions_Type> = Trie.empty();
   private stable var permissionsKey: Int = 0;
   public func createPermission(permission : Types.AdmPermissions_Type) : async Text {
   let ahora : Time.Time = Time.now();
-
-// Convertir Time.Time (que es un Int) a Text
   let ahoraComoTexto : Text = Int.toText(ahora);
-
   switch (Trie.get(permissionsADM, key(permission.idPermissions), Text.equal)) {
       case (null) {
         // Acción cuando no se encuentra el elemento

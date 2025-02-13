@@ -1,6 +1,53 @@
 import Int "mo:base/Int";
 module{
 
+
+  public type SetGroupInformations_Type = {
+  idGroupInformation  : Text;
+  groupInformationName : Text;
+  groupInformationDescription : Text;
+  state  : Text;
+  userCreated  : Text;
+  creationDate  : Text;
+  userUpdate  : Text;
+  updateDate  : Text;
+  };
+
+
+  public type SetUserType_Type = {
+    idTypeUser : Text;
+    typeUser : Text;
+    descriptionTypeUser : Text;
+    state : Text;
+    userCreated : Text;
+    creationDate : Text;
+    userUpdate : Text;
+    updateDate : Text;
+  };
+
+  public type SetDocumentType_Type = {
+    idTypeDocument: Text;
+    typeDocument: Text;
+    descriptionTypeDocument : Text;
+    state : Text;
+    userCreated : Text;
+    creationDate : Text;
+    userUpdate : Text;
+    updateDate : Text;
+  };
+
+  public type SetCargoType_Type = {
+  idTypeCargo : Text;
+  typeCargo : Text;
+  descriptionTypeCargo : Text;
+  state : Text;
+  userCreated : Text;
+  creationDate : Text;
+  userUpdate : Text;
+  updateDate : Text;
+  };
+
+
    public type AdmPermissions_Type = {
     idPermissions  : Text;
     permissions : Text;
