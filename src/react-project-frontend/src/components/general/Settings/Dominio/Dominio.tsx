@@ -4,9 +4,11 @@ import { DataTable } from "../..";
 import { Modal } from "../..";
 import { Button } from "@/components/ui/button";
 import { ModalCreate, ModalUpdate } from "./components";
-import { columns } from "./constants";
+import { useColumns } from "./hooks/useColumns";
+import { useNewData } from "./hooks/useData";
 const Dominio = () => {
-  const [newData, setNewData] = useState<any>(null);
+  const { newData, setNewData } = useNewData(null);
+  const columns = useColumns(setNewData);
 
   const data = [
     {
@@ -28,8 +30,8 @@ const Dominio = () => {
   const headerActions = [
     <Modal
       trigger={<Button>Nuevo</Button>}
-      data={<ModalUpdate setNewData={setNewData} />}
-      subTitle="Nuevo ubigeo"
+      data={<ModalCreate setNewData={setNewData} />}
+      subTitle="Nuevo dominio"
       title="Nuevo"
     />
   ];
