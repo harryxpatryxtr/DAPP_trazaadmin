@@ -409,7 +409,6 @@ private stable var RolUserADM : Trie.Trie<Text, Types.RolUser_Type> = Trie.empty
       Text.equal,
       ?rolUser,
     ).0;
-
     return rolUser.idRolUser;
   };
 
