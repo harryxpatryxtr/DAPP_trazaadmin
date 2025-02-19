@@ -2,6 +2,16 @@ import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/general/Modal";
 import { ModalUpdate } from "../components";
 
+// {
+//   descriptionTypeUser: text;
+//   userUpdate: text;
+//   creationDate: text;
+//   state: text;
+//   typeUser: text;
+//   userCreated: text;
+//   idTypeUser: text;
+//   updateDate: text;
+// }
 export const useColumns = (setNewData: (data: any) => void) => {
   const columns = [
     {
@@ -13,7 +23,7 @@ export const useColumns = (setNewData: (data: any) => void) => {
     },
     {
       header: "Codigo",
-      accessorKey: "codigo"
+      accessorKey: "idTypeUser"
     },
     {
       header: "Tipo de Usuario",
@@ -21,7 +31,7 @@ export const useColumns = (setNewData: (data: any) => void) => {
     },
     {
       header: "Descripcion",
-      accessorKey: "descripcion"
+      accessorKey: "descriptionTypeUser"
     },
     {
       header: "Author",
@@ -29,7 +39,7 @@ export const useColumns = (setNewData: (data: any) => void) => {
     },
     {
       header: "Estado",
-      accessorKey: "estado"
+      accessorKey: "state"
     },
     {
       header: "Acciones",

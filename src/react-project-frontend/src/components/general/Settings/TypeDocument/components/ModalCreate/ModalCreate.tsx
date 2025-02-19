@@ -9,7 +9,7 @@ type ModalCreateProps = {
 };
 
 type Inputs = {
-  typeUser: string;
+  typeDocument: string;
   description: string;
 };
 
@@ -21,6 +21,7 @@ export const ModalCreate = ({ setNewData }: ModalCreateProps) => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<any> = (data) => {
+    console.log(data, "data send");
     setNewData(data);
   };
   return (
@@ -34,7 +35,7 @@ export const ModalCreate = ({ setNewData }: ModalCreateProps) => {
             id="name"
             defaultValue={""}
             className="col-span-3"
-            {...register("typeUser", { required: true })}
+            {...register("typeDocument", { required: true })}
           />
         </div>
         <div className="grid grid-cols-4 items-center gap-x-4">

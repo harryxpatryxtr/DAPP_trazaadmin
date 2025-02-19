@@ -5,19 +5,18 @@ import { useNewData } from "../Dominio/hooks/useData";
 import { Button } from "@/components/ui/button";
 import { ModalCreate } from "./components";
 import { Modal } from "@/components/general/Modal";
+import { useTypeUser } from "./hooks/UseTypeUser";
+import { useEffect } from "react";
 
 const TypeUser = () => {
   const { newData, setNewData } = useNewData(null);
   const columns = useColumns(setNewData);
-  const data = [
-    {
-      codigo: "123456",
-      typeUser: "Lima",
-      description: "123456",
-      author: "123456",
-      state: "Activo"
-    }
-  ];
+  const { typeUser, fetchTypeUser } = useTypeUser();
+
+  useEffect(() => {
+    fetchTypeUser();
+  }, []);
+  console.log(typeUser, "typeUser");
   const headerActions = [
     <Modal
       trigger={<Button>Nuevo</Button>}
@@ -29,7 +28,11 @@ const TypeUser = () => {
   return (
     <Layout>
       <h1 className="text-3xl font-bold underline">Pagina Tipo Usuario</h1>
-      <DataTable columns={columns} data={data} headerActions={headerActions} />
+      <DataTable
+        columns={columns}
+        data={typeUser}
+        headerActions={headerActions}
+      />
     </Layout>
   );
 };

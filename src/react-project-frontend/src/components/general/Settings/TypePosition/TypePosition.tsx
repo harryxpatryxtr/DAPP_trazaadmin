@@ -5,19 +5,14 @@ import { Button } from "@/components/ui/button";
 import { ModalCreate } from "./components";
 import { Modal } from "../../Modal";
 import Layout from "@/components/layout";
+import { useTypePosition } from "./hooks/useTypePosition";
+import { useEffect } from "react";
 
 export const TypePosition = () => {
   const { newData, setNewData } = useNewData(null);
   const columns = useColumns(setNewData);
-  const data = [
-    {
-      codigo: "123456",
-      typeUser: "Lima",
-      description: "123456",
-      author: "123456",
-      state: "Activo"
-    }
-  ];
+  const { typePosition, loading, error, fetchTypePosition } = useTypePosition();
+
   const headerActions = [
     <Modal
       trigger={<Button>Nuevo</Button>}
@@ -26,10 +21,19 @@ export const TypePosition = () => {
       title="Nuevo"
     />
   ];
+
+  useEffect(() => {
+    fetchTypePosition();
+  }, []);
+
   return (
     <Layout>
       <h1 className="text-3xl font-bold underline">Pagina Tipo de Cargo</h1>
-      <DataTable columns={columns} data={data} headerActions={headerActions} />
+      <DataTable
+        columns={columns}
+        data={typePosition}
+        headerActions={headerActions}
+      />
     </Layout>
   );
 };

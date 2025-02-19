@@ -13,15 +13,15 @@ export const useColumns = (setNewData: (data: any) => void) => {
     },
     {
       header: "Codigo",
-      accessorKey: "codigo"
+      accessorKey: "idTypeDocument"
     },
     {
-      header: "Tipo de Usuario",
-      accessorKey: "typeUser"
+      header: "Tipo de Documento",
+      accessorKey: "typeDocument"
     },
     {
       header: "Descripcion",
-      accessorKey: "descripcion"
+      accessorKey: "descriptionTypeDocument"
     },
     {
       header: "Author",
@@ -29,7 +29,7 @@ export const useColumns = (setNewData: (data: any) => void) => {
     },
     {
       header: "Estado",
-      accessorKey: "estado"
+      accessorKey: "state"
     },
     {
       header: "Acciones",
