@@ -34,7 +34,7 @@ export const useColumns = (setNewData: (data: any) => void) => {
       accessorKey: "descriptionTypeUser"
     },
     {
-      header: "Author",
+      header: "Autor",
       accessorKey: "author"
     },
     {

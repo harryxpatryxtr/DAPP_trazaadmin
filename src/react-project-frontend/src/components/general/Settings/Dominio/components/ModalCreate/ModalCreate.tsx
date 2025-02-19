@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type ModalCreateProps = {
@@ -40,7 +41,7 @@ export const ModalCreate = ({ setNewData }: ModalCreateProps) => {
           <Label htmlFor="name" className="text-right">
             Descripcion
           </Label>
-          <Input
+          <Textarea
             id="name"
             defaultValue={""}
             className="col-span-3"
@@ -52,7 +53,7 @@ export const ModalCreate = ({ setNewData }: ModalCreateProps) => {
             </span>
           )}
         </div>
-        <Button type="submit">Actualizar</Button>
+        <Button type="submit">Crear</Button>
       </form>
     </div>
   );

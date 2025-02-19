@@ -16,13 +16,12 @@ const TypeUser = () => {
   useEffect(() => {
     fetchTypeUser();
   }, []);
-  console.log(typeUser, "typeUser");
   const headerActions = [
     <Modal
       trigger={<Button>Nuevo</Button>}
       data={<ModalCreate setNewData={setNewData} />}
-      subTitle="Tipo de usuario"
-      title="Nuevo"
+      subTitle="Crear nuevo tipo de usuario"
+      title="Nuevo tipo de usuario"
     />
   ];
   return (

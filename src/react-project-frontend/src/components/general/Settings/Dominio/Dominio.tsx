@@ -20,8 +20,8 @@ const Dominio = () => {
     <Modal
       trigger={<Button>Nuevo</Button>}
       data={<ModalCreate setNewData={setNewData} />}
-      subTitle="Nuevo dominio"
-      title="Nuevo"
+      subTitle="Crear nuevo dominio"
+      title="Nuevo dominio"
     />
   ];
   return (

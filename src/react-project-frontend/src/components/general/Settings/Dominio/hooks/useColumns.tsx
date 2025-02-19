@@ -24,7 +24,7 @@ export const useColumns = (setNewData: (data: any) => void) => {
       accessorKey: "groupInformationDescription"
     },
     {
-      header: "Author",
+      header: "Autor",
       accessorKey: "author"
     },
     {

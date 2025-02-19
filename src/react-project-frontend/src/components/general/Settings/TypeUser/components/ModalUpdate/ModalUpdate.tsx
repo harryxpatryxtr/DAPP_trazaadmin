@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -51,7 +52,7 @@ export const ModalUpdate = ({ setNewData }: ModalUpdateProps) => {
           <Label htmlFor="name" className="text-right">
             Descripcion
           </Label>
-          <Input
+          <Textarea
             id="name"
             defaultValue={""}
             className="col-span-3"
