@@ -15,7 +15,7 @@ export const useTypePosition = () => {
     setLoading(true);
     setError(null);
     try {
-      const data = await react_project_backend.readAllTypeSet();
+      const data = await react_project_backend.readAllCargoTypeSet();
       console.log(data, "data type position");
       const transformedData = data.map(([_, typePosition]) => {
         return {
