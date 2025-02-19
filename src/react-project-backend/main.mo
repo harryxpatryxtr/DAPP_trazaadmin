@@ -260,7 +260,7 @@ actor class Adm() {
     return result;
   };
 
-  public query func readAllTypeSet() : async [(Text, Types.SetCargoType_Type)] {
+  public query func readAllCargoTypeSet() : async [(Text, Types.SetCargoType_Type)] {
     let result = Iter.toArray(Trie.iter(cargoTypeSet));
     return result;
   }; 
