@@ -16,8 +16,6 @@ type Inputs = {
 };
 
 export const ContentModalUpdate = ({ data, setNewData }: any) => {
-  console.log(data, "data update");
-  // const { row } = data;
   const { item } = data;
   const {
     handleSubmit,
@@ -31,8 +29,6 @@ export const ContentModalUpdate = ({ data, setNewData }: any) => {
   };
 
   const onSubmit: SubmitHandler<any> = (data) => {
-    console.log(data, "data update");
-    console.log(item, "item update");
     const newData = {
       id: item,
       ...data

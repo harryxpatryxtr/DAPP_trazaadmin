@@ -10,7 +10,7 @@ type ModalCreateProps = {
 
 type Inputs = {
   dominio: string;
-  descripcion: string;
+  description: string;
 };
 
 export const ModalCreate = ({ setNewData }: ModalCreateProps) => {
@@ -45,9 +45,9 @@ export const ModalCreate = ({ setNewData }: ModalCreateProps) => {
             id="name"
             defaultValue={""}
             className="col-span-3"
-            {...register("descripcion", { required: true })}
+            {...register("description", { required: true })}
           />
-          {errors.descripcion && (
+          {errors.description && (
             <span className="text-red-500 col-span-4 text-xs text-right">
               Este campo es requerido
             </span>

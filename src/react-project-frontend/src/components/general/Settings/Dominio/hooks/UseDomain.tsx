@@ -1,14 +1,6 @@
 import { useState } from "react";
 import { react_project_backend } from "../../../../../../../declarations/react-project-backend";
-interface Domain {
-  groupInformationDescription: string;
-  userUpdate: string;
-  creationDate: string;
-  state: string;
-  idGroupInformation: string;
-  userCreated: string;
-  groupInformationName: string;
-}
+import { Domain } from "../type";
 
 export const useDomain = () => {
   const [domains, setDomains] = useState<Domain[]>([]);
@@ -18,24 +10,17 @@ export const useDomain = () => {
   const fetchDomains = async () => {
     setLoading(true);
     setError(null);
-    // groupInformationDescription: text;
-    // userUpdate: text;
-    // creationDate: text;
-    // state: text;
-    // idGroupInformation: text;
-    // userCreated: text;
-    // groupInformationName: text;
-    // updateDate: text;
     try {
       const data = await react_project_backend.readAllGroupInformations();
       const formattedData = data.map(([_, domain]) => ({
-        groupInformationDescription: domain.groupInformationDescription,
-        userUpdate: domain.userUpdate,
-        creationDate: domain.creationDate,
-        state: domain.state,
-        idGroupInformation: domain.idGroupInformation,
-        userCreated: domain.userCreated,
-        groupInformationName: domain.groupInformationName
+        groupInformationDescription: domain.groupInformationDescription || "",
+        userUpdate: domain.userUpdate || "",
+        creationDate: domain.creationDate || "",
+        state: domain.state || "",
+        idGroupInformation: domain.idGroupInformation || "",
+        userCreated: domain.userCreated || "",
+        groupInformationName: domain.groupInformationName || "",
+        updateDate: domain.updateDate || ""
       }));
       console.log(formattedData, "formater date");
       setDomains(formattedData);
@@ -47,5 +32,18 @@ export const useDomain = () => {
     }
   };
 
-  return { domains, loading, error, fetchDomains };
+  const createDomain = async (domain: Domain) => {
+    setLoading(true);
+    setError(null);
+    console.log(domain, "domain create and update");
+    try {
+      const data = await react_project_backend.createInformationSet(domain);
+      console.log(data, "data create domain");
+      await fetchDomains();
+    } catch (err: any) {
+      console.error(err);
+    }
+  };
+
+  return { domains, loading, error, fetchDomains, createDomain };
 };

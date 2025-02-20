@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Modal } from "../../../Modal";
 import { ModalUpdate } from "../components";
-
+import { Domain } from "../type";
 export const useColumns = (setNewData: (data: any) => void) => {
   const columns = [
     {
@@ -25,7 +25,7 @@ export const useColumns = (setNewData: (data: any) => void) => {
     },
     {
       header: "Autor",
-      accessorKey: "author"
+      accessorKey: "userCreated"
     },
     {
       header: "Estado",
@@ -38,7 +38,9 @@ export const useColumns = (setNewData: (data: any) => void) => {
         return (
           <Modal
             trigger={<Button variant="outline">Editar</Button>}
-            data={<ModalUpdate setNewData={setNewData} />}
+            data={
+              <ModalUpdate dataUpdate={row.original} setNewData={setNewData} />
+            }
             subTitle="Editar el dominio"
             title="Editar"
           />
