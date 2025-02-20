@@ -11,11 +11,14 @@ import TypeDocumentPage from "@/pages/TypeDocumentPage";
 import TypeUserPage from "@/pages/TypeUserPage";
 import TypePositionPage from "@/pages/TypePositionPage";
 import CompanyPage from "@/pages/CompanyPage";
+import AddFilePage from "@/pages/AddFilePage";
+
 
 const AppRoutes: React.FC = () => {
   return (
     <Router>
       <Routes>
+      <Route path="/file" element={<AddFilePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/permiso" element={<PermisoPage />} />
         <Route path="/rol" element={<RolPage />} />

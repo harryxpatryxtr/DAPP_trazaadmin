@@ -6,9 +6,9 @@ import Time "mo:base/Time";
 import Types "./types/types";
 
 
-
 import Cycles = "mo:base/ExperimentalCycles";
 import IC = "mo:base/Principal";
+import Principal "mo:base/Principal";
 
 
 actor class Adm() {
@@ -424,19 +424,36 @@ private stable var RolUserADM : Trie.Trie<Text, Types.RolUser_Type> = Trie.empty
   };
 
 
-  let management_canister = actor ("aaaaa-aa") : actor {
+let management_canister = actor ("aaaaa-aa") : actor {
         create_canister : shared { settings : ?{ controllers : ?[Principal] } } -> async { canister_id : Principal };
         install_code : shared { canister_id : Principal; mode : { #install }; wasm_module : [Nat8]; arg : [Nat8] } -> async ();
         start_canister : shared { canister_id : Principal } -> async ();
     };
     public func createCanister() : async Principal {
         // Asignamos ciclos al nuevo canister
-        Cycles.add(2_000_000_000_000);  
+        Cycles.add(500_000_000_000);  
         // Creamos el canister
         let create_result = await management_canister.create_canister({ settings = null });
 
         return create_result.canister_id;
-    }
+    };
 
+  public func installWasm(canister_id: Text, wasm_module: [Nat8]) : async () {
+        await management_canister.install_code({
+            canister_id = Principal.fromText(canister_id);
+            mode = #install;  // Usa #upgrade si quieres actualizar sin borrar el estado
+            wasm_module = wasm_module;
+            arg = [];
+        });
+    };
+ // Definir la interfaz del canister externo
+  
 
+    // Función que llama al otro canister
+    public func fetchMessageFromExternal( canisterId: Text) : async Text {
+        let external_canister = actor (canisterId) : actor {
+        greet : (name:Text) -> async Text;
+    };
+        return await external_canister.greet("Samir");
+    };
 };
