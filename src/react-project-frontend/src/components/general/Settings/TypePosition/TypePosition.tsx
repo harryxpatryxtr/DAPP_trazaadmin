@@ -6,34 +6,65 @@ import { ModalCreate } from "./components";
 import { Modal } from "../../Modal";
 import Layout from "@/components/layout";
 import { useTypePosition } from "./hooks/useTypePosition";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const TypePosition = () => {
   const { newData, setNewData } = useNewData(null);
   const columns = useColumns(setNewData);
-  const { typePosition, loading, error, fetchTypePosition } = useTypePosition();
-
-  const headerActions = [
-    <Modal
-      trigger={<Button>Nuevo</Button>}
-      data={<ModalCreate setNewData={setNewData} />}
-      subTitle="Nuevo tipo de cargo"
-      title="Nuevo"
-    />
-  ];
+  const {
+    typePosition,
+    loading,
+    error,
+    fetchTypePosition,
+    createTypePosition
+  } = useTypePosition();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     fetchTypePosition();
   }, []);
 
+  useEffect(() => {
+    if (newData) {
+      const userData = JSON.parse(localStorage.getItem("user") || "{}");
+      const user_created = userData.user_created;
+      createTypePosition({
+        idTypeCargo: newData.idTypeCargo || "",
+        typeCargo: newData.typeCargo,
+        descriptionTypeCargo: newData.descriptionTypeCargo,
+        userUpdate: user_created,
+        creationDate: "",
+        state: newData.state || "active",
+        userCreated: user_created,
+        updateDate: ""
+      });
+      setNewData(null);
+    }
+  }, [newData]);
+
+  const headerActions = [
+    <Modal
+      trigger={<Button>Nuevo</Button>}
+      data={<ModalCreate setNewData={setNewData} setOpen={setOpen} />}
+      subTitle="Nuevo tipo de cargo"
+      title="Nuevo"
+      setOpen={() => setOpen(!open)}
+      open={open}
+    />
+  ];
+
   return (
     <Layout>
       <h1 className="text-3xl font-bold underline">Pagina Tipo de Cargo</h1>
-      <DataTable
-        columns={columns}
-        data={typePosition}
-        headerActions={headerActions}
-      />
+      {loading && <p>Cargando tipo de cargo...</p>}
+      {error && <p>Error al cargar el tipo de cargo.</p>}
+      {typePosition && (
+        <DataTable
+          columns={columns}
+          data={typePosition}
+          headerActions={headerActions}
+        />
+      )}
     </Layout>
   );
 };

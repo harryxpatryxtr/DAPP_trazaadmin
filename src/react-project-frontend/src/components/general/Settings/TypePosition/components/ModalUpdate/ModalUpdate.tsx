@@ -8,29 +8,41 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
-import { useState } from "react";
+import { Textarea } from "@/components/ui/textarea";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type ModalUpdateProps = {
   setNewData: (data: any) => void;
+  dataUpdate: Inputs;
 };
 
 type Inputs = {
-  codigo: string;
-  dominio: string;
-  descripcion: string;
+  idTypeCargo: string;
+  typeCargo: string;
+  descriptionTypeCargo: string;
+  state: string;
 };
 
-export const ModalUpdate = ({ setNewData }: ModalUpdateProps) => {
-  const [selectedRole, setSelectedRole] = useState<string>("");
+export const ModalUpdate = ({ setNewData, dataUpdate }: ModalUpdateProps) => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    setValue
   } = useForm<Inputs>();
+  console.log(dataUpdate, "dataUpdate");
+  const handleChangeState = (value: string) => {
+    setValue("state", value);
+  };
 
-  const onSubmit: SubmitHandler<any> = (data) => {
-    setNewData(data);
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    setNewData({
+      idTypeCargo: dataUpdate.idTypeCargo,
+      typeCargo: data.typeCargo || dataUpdate.typeCargo,
+      descriptionTypeCargo:
+        data.descriptionTypeCargo || dataUpdate.descriptionTypeCargo,
+      state: data.state || dataUpdate.state
+    });
   };
   return (
     <div>
@@ -39,25 +51,25 @@ export const ModalUpdate = ({ setNewData }: ModalUpdateProps) => {
           <Label htmlFor="name" className="text-right">
             Codigo
           </Label>
-          <p>01</p>
+          <p>{dataUpdate.idTypeCargo}</p>
         </div>
         <div className="grid grid-cols-4 items-center gap-x-4">
           <Label htmlFor="name" className="text-right">
-            Dominio
+            Tipo de Cargo
           </Label>
-          <p>Administrador</p>
+          <p>{dataUpdate.typeCargo}</p>
         </div>
         <div className="grid grid-cols-4 items-center gap-x-4">
           <Label htmlFor="name" className="text-right">
             Descripcion
           </Label>
-          <Input
+          <Textarea
             id="name"
-            defaultValue={""}
+            defaultValue={dataUpdate.descriptionTypeCargo}
             className="col-span-3"
-            {...register("descripcion", { required: true })}
+            {...register("descriptionTypeCargo", { required: true })}
           />
-          {errors.descripcion && (
+          {errors.descriptionTypeCargo && (
             <span className="text-red-500 col-span-4 text-xs text-right">
               Este campo es requerido
             </span>
@@ -67,13 +79,16 @@ export const ModalUpdate = ({ setNewData }: ModalUpdateProps) => {
           <Label htmlFor="name" className="text-right">
             Estado
           </Label>
-          <Select onValueChange={setSelectedRole}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Estado" />
+          <Select
+            onValueChange={handleChangeState}
+            defaultValue={dataUpdate.state}
+          >
+            <SelectTrigger className="col-span-3">
+              <SelectValue placeholder={dataUpdate.state} />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Activo">Activo</SelectItem>
-              <SelectItem value="Inactivo">Inactivo</SelectItem>
+            <SelectContent className="w-full">
+              <SelectItem value="active">Activo</SelectItem>
+              <SelectItem value="inactive">Inactivo</SelectItem>
             </SelectContent>
           </Select>
         </div>

@@ -2,16 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/general/Modal";
 import { ModalUpdate } from "../components";
 
-// {
-//   descriptionTypeUser: text;
-//   userUpdate: text;
-//   creationDate: text;
-//   state: text;
-//   typeUser: text;
-//   userCreated: text;
-//   idTypeUser: text;
-//   updateDate: text;
-// }
 export const useColumns = (setNewData: (data: any) => void) => {
   const columns = [
     {
@@ -35,7 +25,7 @@ export const useColumns = (setNewData: (data: any) => void) => {
     },
     {
       header: "Autor",
-      accessorKey: "author"
+      accessorKey: "userCreated"
     },
     {
       header: "Estado",
@@ -48,8 +38,10 @@ export const useColumns = (setNewData: (data: any) => void) => {
         return (
           <Modal
             trigger={<Button variant="outline">Editar</Button>}
-            data={<ModalUpdate setNewData={setNewData} />}
-            subTitle="Editar el dominio"
+            data={
+              <ModalUpdate dataUpdate={row.original} setNewData={setNewData} />
+            }
+            subTitle="Editar el tipo de usuario"
             title="Editar"
           />
         );

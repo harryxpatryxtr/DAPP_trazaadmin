@@ -1,19 +1,11 @@
 import { useState } from "react";
 import { react_project_backend } from "../../../../../../../declarations/react-project-backend";
-
-interface TypeDocument {
-  descriptionTypeDocument: string;
-  idTypeDocument: string;
-  userUpdate: string;
-  creationDate: string;
-  typeDocument: string;
-  state: string;
-  userCreated: string;
-  updateDate: string;
-}
+import { SetDocumentType_Type } from "../../../../../../../declarations/react-project-backend/react-project-backend.did";
 
 export const useTypeDocument = () => {
-  const [typeDocuments, setTypeDocuments] = useState<TypeDocument[]>([]);
+  const [typeDocuments, setTypeDocuments] = useState<SetDocumentType_Type[]>(
+    []
+  );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,7 +14,6 @@ export const useTypeDocument = () => {
     setError(null);
     try {
       const data = await react_project_backend.readAllDocumentTypeSet();
-      console.log(data, "data type document");
       const formattedData = data.map(([_, documentType]) => ({
         descriptionTypeDocument: documentType.descriptionTypeDocument,
         idTypeDocument: documentType.idTypeDocument,
@@ -43,10 +34,9 @@ export const useTypeDocument = () => {
     }
   };
 
-  const createTypeDocument = async (typeDocument: TypeDocument) => {
+  const createTypeDocument = async (typeDocument: SetDocumentType_Type) => {
     setLoading(true);
     setError(null);
-    console.log(typeDocument, "typeDocument create");
     try {
       await react_project_backend.createDocumentTypeSet(typeDocument);
       await fetchDomains();

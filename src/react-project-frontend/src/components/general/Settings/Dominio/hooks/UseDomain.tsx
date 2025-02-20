@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { react_project_backend } from "../../../../../../../declarations/react-project-backend";
-import { Domain } from "../type";
+import { SetGroupInformations_Type } from "../../../../../../../declarations/react-project-backend/react-project-backend.did";
 
 export const useDomain = () => {
-  const [domains, setDomains] = useState<Domain[]>([]);
+  const [domains, setDomains] = useState<SetGroupInformations_Type[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,7 +22,6 @@ export const useDomain = () => {
         groupInformationName: domain.groupInformationName || "",
         updateDate: domain.updateDate || ""
       }));
-      console.log(formattedData, "formater date");
       setDomains(formattedData);
     } catch (err: any) {
       console.error(err);
@@ -32,13 +31,11 @@ export const useDomain = () => {
     }
   };
 
-  const createDomain = async (domain: Domain) => {
+  const createDomain = async (domain: SetGroupInformations_Type) => {
     setLoading(true);
     setError(null);
-    console.log(domain, "domain create and update");
     try {
-      const data = await react_project_backend.createInformationSet(domain);
-      console.log(data, "data create domain");
+      await react_project_backend.createInformationSet(domain);
       await fetchDomains();
     } catch (err: any) {
       console.error(err);

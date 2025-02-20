@@ -5,36 +5,38 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 
 type ModalCreateProps = {
-  setNewData: (data: any) => void;
+  setNewData: (data: Inputs) => void;
+  setOpen: (open: boolean) => void;
 };
 
 type Inputs = {
-  typeUser: string;
+  typeCargo: string;
   description: string;
 };
 
-export const ModalCreate = ({ setNewData }: ModalCreateProps) => {
+export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<any> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
     setNewData(data);
+    setOpen(false);
   };
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 py-4">
         <div className="grid grid-cols-4 items-center gap-4">
           <Label htmlFor="name" className="text-right">
-            Tipo de Usuario
+            Tipo de Cargo
           </Label>
           <Input
             id="name"
             defaultValue={""}
             className="col-span-3"
-            {...register("typeUser", { required: true })}
+            {...register("typeCargo", { required: true })}
           />
         </div>
         <div className="grid grid-cols-4 items-center gap-x-4">
@@ -53,7 +55,7 @@ export const ModalCreate = ({ setNewData }: ModalCreateProps) => {
             </span>
           )}
         </div>
-        <Button type="submit">Actualizar</Button>
+        <Button type="submit">Crear</Button>
       </form>
     </div>
   );

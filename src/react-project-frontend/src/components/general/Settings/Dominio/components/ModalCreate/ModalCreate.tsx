@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 type ModalCreateProps = {
   setNewData: (data: any) => void;
+  setOpen: (open: boolean) => void;
 };
 
 type Inputs = {
@@ -13,7 +14,7 @@ type Inputs = {
   description: string;
 };
 
-export const ModalCreate = ({ setNewData }: ModalCreateProps) => {
+export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
   const {
     register,
     handleSubmit,
@@ -22,6 +23,7 @@ export const ModalCreate = ({ setNewData }: ModalCreateProps) => {
 
   const onSubmit: SubmitHandler<any> = (data) => {
     setNewData(data);
+    setOpen(false);
   };
   return (
     <div>

@@ -1,13 +1,9 @@
 import { useState } from "react";
 import { react_project_backend } from "../../../../../../../declarations/react-project-backend";
+import { SetCargoType_Type } from "../../../../../../../declarations/react-project-backend/react-project-backend.did";
 
-interface TypePosition {
-  idTypeCargo: string;
-  typeCargo: string;
-  descriptionTypeCargo: string;
-}
 export const useTypePosition = () => {
-  const [typePosition, setTypePosition] = useState<TypePosition[]>([]);
+  const [typePosition, setTypePosition] = useState<SetCargoType_Type[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -16,7 +12,6 @@ export const useTypePosition = () => {
     setError(null);
     try {
       const data = await react_project_backend.readAllCargoTypeSet();
-      console.log(data, "data type position");
       const transformedData = data.map(([_, typePosition]) => {
         return {
           idTypeCargo: typePosition.idTypeCargo,
@@ -38,5 +33,25 @@ export const useTypePosition = () => {
     }
   };
 
-  return { typePosition, loading, error, fetchTypePosition };
+  const createTypePosition = async (typePosition: SetCargoType_Type) => {
+    setLoading(true);
+    setError(null);
+    try {
+      await react_project_backend.createCargoTypeSet(typePosition);
+      await fetchTypePosition();
+    } catch (err: any) {
+      console.error(err);
+      setError("Error al crear el cargo.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return {
+    typePosition,
+    loading,
+    error,
+    fetchTypePosition,
+    createTypePosition
+  };
 };

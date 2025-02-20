@@ -5,54 +5,58 @@ import { useNewData } from "../Dominio/hooks/useData";
 import { Button } from "@/components/ui/button";
 import { ModalCreate } from "./components";
 import { useTypeDocument } from "./hooks/useTypeDocument";
-import { useEffect } from "react";
-import { useUser } from "@/hooks/useUser";
+import { useEffect, useState } from "react";
 
 const TypeDocument = () => {
   const userData = JSON.parse(localStorage.getItem("user") || "{}");
   const { newData, setNewData } = useNewData(null);
-  // const { userData } = useUser();
   const columns = useColumns(setNewData);
   const { typeDocuments, loading, error, fetchDomains, createTypeDocument } =
     useTypeDocument();
-  // console.log(typeDocuments, "typeDocuments");
-  const headerActions = [
-    <Modal
-      trigger={<Button>Nuevo</Button>}
-      data={<ModalCreate setNewData={setNewData} />}
-      subTitle="Nuevo dominio"
-      title="Nuevo"
-    />
-  ];
-
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     fetchDomains();
   }, []);
 
-  // descriptionTypeDocument:text; idTypeDocument:text; userUpdate:text; creationDate:text; typeDocument:text; state:text; userCreated:text; updateDate:text}
   useEffect(() => {
     if (newData) {
       createTypeDocument({
         descriptionTypeDocument: newData.description,
         typeDocument: newData.typeDocument,
-        state: userData.state || "activo",
-        userCreated: userData.userCreated || "",
-        updateDate: userData.updateDate || "",
-        userUpdate: userData.userUpdate || "",
-        creationDate: userData.creationDate || "",
-        idTypeDocument: userData.idTypeDocument || ""
+        state: newData.state || "active",
+        userCreated: userData.user_created,
+        updateDate: "",
+        userUpdate: userData.user_created,
+        creationDate: "",
+        idTypeDocument: newData.idTypeDocument || ""
       });
+      setNewData(null);
     }
   }, [newData]);
+
+  const headerActions = [
+    <Modal
+      trigger={<Button>Nuevo</Button>}
+      data={<ModalCreate setNewData={setNewData} setOpen={setOpen} />}
+      subTitle="Nuevo tipo de documento"
+      title="Nuevo"
+      setOpen={() => setOpen(!open)}
+      open={open}
+    />
+  ];
 
   return (
     <Layout>
       <h1 className="text-3xl font-bold underline">Pagina Tipo de Documento</h1>
-      <DataTable
-        columns={columns}
-        data={typeDocuments}
-        headerActions={headerActions}
-      />
+      {loading && <p>Cargando...</p>}
+      {error && <p>Error al cargar los datos</p>}
+      {typeDocuments && (
+        <DataTable
+          columns={columns}
+          data={typeDocuments}
+          headerActions={headerActions}
+        />
+      )}
     </Layout>
   );
 };

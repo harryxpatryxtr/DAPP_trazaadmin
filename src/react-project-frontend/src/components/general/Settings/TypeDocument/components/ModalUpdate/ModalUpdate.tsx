@@ -8,29 +8,39 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
-import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type ModalUpdateProps = {
   setNewData: (data: any) => void;
+  dataUpdate: any;
 };
 
 type Inputs = {
   codigo: string;
   dominio: string;
-  descripcion: string;
+  description: string;
+  state: string;
 };
 
-export const ModalUpdate = ({ setNewData }: ModalUpdateProps) => {
-  const [selectedRole, setSelectedRole] = useState<string>("");
+export const ModalUpdate = ({ setNewData, dataUpdate }: ModalUpdateProps) => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    setValue
   } = useForm<Inputs>();
 
+  const handleChangeState = (value: string) => {
+    setValue("state", value);
+  };
+
   const onSubmit: SubmitHandler<any> = (data) => {
-    setNewData(data);
+    setNewData({
+      idTypeDocument: dataUpdate.idTypeDocument,
+      typeDocument: data.typeDocument || dataUpdate.typeDocument,
+      description: data.description || dataUpdate.descriptionTypeDocument,
+      state: data.state || dataUpdate.state
+    });
   };
   return (
     <div>
@@ -39,13 +49,13 @@ export const ModalUpdate = ({ setNewData }: ModalUpdateProps) => {
           <Label htmlFor="name" className="text-right">
             Codigo
           </Label>
-          <p>01</p>
+          <p className="col-span-3">{dataUpdate.idTypeDocument}</p>
         </div>
         <div className="grid grid-cols-4 items-center gap-x-4">
           <Label htmlFor="name" className="text-right">
-            Dominio
+            Tipo de Documento
           </Label>
-          <p>Administrador</p>
+          <p className="col-span-3">{dataUpdate.typeDocument}</p>
         </div>
         <div className="grid grid-cols-4 items-center gap-x-4">
           <Label htmlFor="name" className="text-right">
@@ -53,11 +63,11 @@ export const ModalUpdate = ({ setNewData }: ModalUpdateProps) => {
           </Label>
           <Input
             id="name"
-            defaultValue={""}
+            defaultValue={dataUpdate.descriptionTypeDocument}
             className="col-span-3"
-            {...register("descripcion", { required: true })}
+            {...register("description", { required: true })}
           />
-          {errors.descripcion && (
+          {errors.description && (
             <span className="text-red-500 col-span-4 text-xs text-right">
               Este campo es requerido
             </span>
@@ -67,13 +77,16 @@ export const ModalUpdate = ({ setNewData }: ModalUpdateProps) => {
           <Label htmlFor="name" className="text-right">
             Estado
           </Label>
-          <Select onValueChange={setSelectedRole}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Estado" />
+          <Select
+            onValueChange={handleChangeState}
+            defaultValue={dataUpdate.state}
+          >
+            <SelectTrigger className="col-span-3">
+              <SelectValue placeholder={dataUpdate.state} />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Activo">Activo</SelectItem>
-              <SelectItem value="Inactivo">Inactivo</SelectItem>
+            <SelectContent className="w-full">
+              <SelectItem value="active">Activo</SelectItem>
+              <SelectItem value="inactive">Inactivo</SelectItem>
             </SelectContent>
           </Select>
         </div>

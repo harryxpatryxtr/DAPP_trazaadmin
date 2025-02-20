@@ -24,8 +24,8 @@ export const useColumns = (setNewData: (data: any) => void) => {
       accessorKey: "descriptionTypeDocument"
     },
     {
-      header: "Author",
-      accessorKey: "author"
+      header: "Autor",
+      accessorKey: "userCreated"
     },
     {
       header: "Estado",
@@ -38,8 +38,10 @@ export const useColumns = (setNewData: (data: any) => void) => {
         return (
           <Modal
             trigger={<Button variant="outline">Editar</Button>}
-            data={<ModalUpdate setNewData={setNewData} />}
-            subTitle="Editar el dominio"
+            data={
+              <ModalUpdate setNewData={setNewData} dataUpdate={row.original} />
+            }
+            subTitle="Editar el tipo de documento"
             title="Editar"
           />
         );

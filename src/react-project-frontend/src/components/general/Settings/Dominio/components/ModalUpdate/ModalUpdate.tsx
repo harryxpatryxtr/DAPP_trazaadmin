@@ -9,7 +9,6 @@ import {
   SelectValue
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type ModalUpdateProps = {
@@ -37,7 +36,6 @@ export const ModalUpdate = ({ setNewData, dataUpdate }: ModalUpdateProps) => {
   };
 
   const onSubmit: SubmitHandler<any> = (data) => {
-    console.log(data, "data update1");
     const newData = {
       idGroupInformation: dataUpdate.idGroupInformation,
       dominio: data.dominio || dataUpdate.groupInformationName,

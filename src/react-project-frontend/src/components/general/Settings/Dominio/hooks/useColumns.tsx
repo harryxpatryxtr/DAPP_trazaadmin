@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Modal } from "../../../Modal";
 import { ModalUpdate } from "../components";
-import { Domain } from "../type";
 export const useColumns = (setNewData: (data: any) => void) => {
   const columns = [
     {
