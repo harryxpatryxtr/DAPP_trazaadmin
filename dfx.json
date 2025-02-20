@@ -2,7 +2,10 @@
   "canisters": {
     "react-project-backend": {
       "main": "src/react-project-backend/main.mo",
-      "type": "motoko"
+      "type": "motoko",
+      "settings": {
+        "controllers": ["$(dfx identity get-principal)"]
+      }
     },
     "react-project-frontend": {
       "dependencies": ["react-project-backend"],
