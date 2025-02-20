@@ -5,6 +5,12 @@ import Iter "mo:base/Iter";
 import Time "mo:base/Time";
 import Types "./types/types";
 
+
+
+import Cycles = "mo:base/ExperimentalCycles";
+import IC = "mo:base/Principal";
+
+
 actor class Adm() {
   type Key<K> = Trie.Key<K>;
   func key(t : Text) : Key<Text> { { hash = Text.hash t; key = t } };
@@ -44,7 +50,7 @@ actor class Adm() {
         idGroupInformation  = informationReq.idGroupInformation;
         groupInformationName = informationReq.groupInformationName;
         groupInformationDescription = informationReq.groupInformationDescription ;
-        state = value.state;
+        state = informationReq.state;
         userCreated = value.userCreated;
         creationDate = value.creationDate;
         userUpdate = informationReq.userUpdate;
@@ -107,7 +113,7 @@ actor class Adm() {
         idTypeUser  = userTypeSetReq.idTypeUser;
         typeUser = userTypeSetReq.typeUser;
         descriptionTypeUser = userTypeSetReq.descriptionTypeUser ;
-        state = value.state;
+        state = userTypeSetReq.state;
         userCreated = value.userCreated;
         creationDate = value.creationDate;
         userUpdate = userTypeSetReq.userUpdate;
@@ -174,7 +180,7 @@ actor class Adm() {
         idTypeDocument  = documentTypeReq.idTypeDocument;
         typeDocument = documentTypeReq.typeDocument;
         descriptionTypeDocument = documentTypeReq.descriptionTypeDocument ;
-        state = value.state;
+        state = documentTypeReq.state;
         userCreated = value.userCreated;
         creationDate = value.creationDate;
         userUpdate = documentTypeReq.userUpdate;
@@ -239,7 +245,7 @@ actor class Adm() {
         idTypeCargo  = cargoTypeReq.idTypeCargo;
         typeCargo = cargoTypeReq.typeCargo;
         descriptionTypeCargo = cargoTypeReq.descriptionTypeCargo ;
-        state = value.state;
+        state = cargoTypeReq.state;
         userCreated = value.userCreated;
         creationDate = value.creationDate;
         userUpdate = cargoTypeReq.userUpdate;
@@ -300,7 +306,7 @@ actor class Adm() {
         idPermissions  = permission.idPermissions;
         permissions = permission.permissions;
         descriptionPermissions = permission.descriptionPermissions ;
-        state = value.state;
+        state = permission.state;
         userCreated = value.userCreated;
         creationDate = value.creationDate;
         updateDate = ahoraComoTexto;
@@ -416,5 +422,21 @@ private stable var RolUserADM : Trie.Trie<Text, Types.RolUser_Type> = Trie.empty
     let result = Trie.find(RolUserADM, key(idRolUser), Text.equal);
     return result;
   };
+
+
+  let management_canister = actor ("aaaaa-aa") : actor {
+        create_canister : shared { settings : ?{ controllers : ?[Principal] } } -> async { canister_id : Principal };
+        install_code : shared { canister_id : Principal; mode : { #install }; wasm_module : [Nat8]; arg : [Nat8] } -> async ();
+        start_canister : shared { canister_id : Principal } -> async ();
+    };
+    public func createCanister() : async Principal {
+        // Asignamos ciclos al nuevo canister
+        Cycles.add(2_000_000_000_000);  
+        // Creamos el canister
+        let create_result = await management_canister.create_canister({ settings = null });
+
+        return create_result.canister_id;
+    }
+
 
 };
