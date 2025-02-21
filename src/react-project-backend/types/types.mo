@@ -1,17 +1,15 @@
-module{
-
+module {
 
   public type SetGroupInformations_Type = {
-  idGroupInformation  : Text;
-  groupInformationName : Text;
-  groupInformationDescription : Text;
-  state  : Text;
-  userCreated  : Text;
-  creationDate  : Text;
-  userUpdate  : Text;
-  updateDate  : Text;
+    idGroupInformation : Text;
+    groupInformationName : Text;
+    groupInformationDescription : Text;
+    state : Text;
+    userCreated : Text;
+    creationDate : Text;
+    userUpdate : Text;
+    updateDate : Text;
   };
-
 
   public type SetUserType_Type = {
     idTypeUser : Text;
@@ -25,8 +23,8 @@ module{
   };
 
   public type SetDocumentType_Type = {
-    idTypeDocument: Text;
-    typeDocument: Text;
+    idTypeDocument : Text;
+    typeDocument : Text;
     descriptionTypeDocument : Text;
     state : Text;
     userCreated : Text;
@@ -36,31 +34,30 @@ module{
   };
 
   public type SetCargoType_Type = {
-  idTypeCargo : Text;
-  typeCargo : Text;
-  descriptionTypeCargo : Text;
-  state : Text;
-  userCreated : Text;
-  creationDate : Text;
-  userUpdate : Text;
-  updateDate : Text;
+    idTypeCargo : Text;
+    typeCargo : Text;
+    descriptionTypeCargo : Text;
+    state : Text;
+    userCreated : Text;
+    creationDate : Text;
+    userUpdate : Text;
+    updateDate : Text;
   };
 
-
-   public type AdmPermissions_Type = {
-    idPermissions  : Text;
+  public type AdmPermissions_Type = {
+    idPermissions : Text;
     permissions : Text;
-    descriptionPermissions :Text;
+    descriptionPermissions : Text;
     state : Text;
     userCreated : Text;
     creationDate : Text;
     updateDate : Text;
   };
 
-   public type AdmRoles_Type = {
-    idRol   : Text;
+  public type AdmRoles_Type = {
+    idRol : Text;
     rol : Text;
-    descriptionRol :Text;
+    descriptionRol : Text;
     state : Text;
     userCreated : Text;
     creationDate : Text;
@@ -68,7 +65,7 @@ module{
   };
 
   public type AdmRolPermissions_Type = {
-    idRolPermissions    : Text;
+    idRolPermissions : Text;
     idPermissions : Text;
     idRol : Text;
     state : Text;
@@ -87,8 +84,8 @@ module{
     updateDate : Text;
   };
 
- public type TypeDocument_Type = {
-    idTypeDocument  : Text;
+  public type TypeDocument_Type = {
+    idTypeDocument : Text;
     typeDocument : Text;
     descriptionTypeDocument : Text;
     state : Text;
@@ -97,9 +94,8 @@ module{
     updateDate : Text;
   };
 
-
   public type User_Type = {
-    idUser   : Text;
+    idUser : Text;
     idTypeUser : Text;
     idTypeDocument : Text;
     user : Text;
@@ -107,7 +103,7 @@ module{
     password : Text;
     nroDocument : Text;
     name : Text;
-    paternal_surname: Text;
+    paternal_surname : Text;
     maternal_surname : Text;
     photo_user : Text;
     state : Text;
@@ -118,11 +114,33 @@ module{
 
   public type RolUser_Type = {
     idRolUser : Text;
-    idUser: Text;
+    idUser : Text;
     idRol : Text;
     state : Text;
     userCreated : Text;
     creationDate : Text;
     updateDate : Text;
   };
-}
+
+  public type ParentCompanyREO_Type = {
+    idParentCompany : Text;
+    glnParentCompany : Text;
+    parentCompany : Text;
+    parentCompanyRuc : Text;
+    parentCompanyUbigeo : Text;
+    parentCompanyAddress : Text;
+    parentCompanyLocation : Text;
+    parentCompanyContactEmail : Text;
+    parentCompanyContactCellular : Text;
+    parentCompanyWeb : Text;
+    logo : Text;
+    idCanisterData : Text;
+    idCanisterAssets : Text;
+    state : Text;
+    userCreated : Text;
+    creationDate : Text;
+    userUpdate : Text;
+    updateDate : Text;
+
+  };
+};
