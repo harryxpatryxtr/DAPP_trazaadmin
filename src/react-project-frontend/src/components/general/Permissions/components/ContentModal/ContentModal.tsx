@@ -2,23 +2,28 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 type Inputs = {
-  estado: string;
-  permiso: string;
-  descripcion: string;
-  autor: string;
+  permissions: string;
+  descriptionPermissions: string;
 };
 
-export const ContentModal = ({ setNewData }: any) => {
+type ContentModalProps = {
+  setNewData: (data: Inputs) => void;
+  setOpen: (open: boolean) => void;
+};
+
+export const ContentModal = ({ setNewData, setOpen }: ContentModalProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<any> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
     setNewData(data);
+    setOpen(false);
   };
   return (
     <div>
@@ -31,9 +36,9 @@ export const ContentModal = ({ setNewData }: any) => {
             id="name"
             defaultValue={""}
             className="col-span-3"
-            {...register("permiso", { required: true })}
+            {...register("permissions", { required: true })}
           />
-          {errors.permiso && (
+          {errors.permissions && (
             <span className="text-red-500 col-span-4 text-xs text-right">
               Este campo es requerido
             </span>
@@ -43,13 +48,13 @@ export const ContentModal = ({ setNewData }: any) => {
           <Label htmlFor="username" className="text-right">
             Descripción
           </Label>
-          <Input
+          <Textarea
             id="username"
             defaultValue={""}
             className="col-span-3"
-            {...register("descripcion", { required: true })}
+            {...register("descriptionPermissions", { required: true })}
           />
-          {errors.descripcion && (
+          {errors.descriptionPermissions && (
             <span className="text-red-500 col-span-4 text-xs text-right">
               Este campo es requerido
             </span>

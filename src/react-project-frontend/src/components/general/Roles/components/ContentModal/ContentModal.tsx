@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SubmitHandler } from "react-hook-form";
+import { Textarea } from "@/components/ui/textarea";
 
 type Inputs = {
   rol: string;
@@ -10,9 +11,11 @@ type Inputs = {
 };
 
 export const ContentModal = ({
-  setNewData
+  setNewData,
+  setOpen
 }: {
-  setNewData: (data: any) => void;
+  setNewData: (data: Inputs) => void;
+  setOpen: (open: boolean) => void;
 }) => {
   const {
     register,
@@ -21,8 +24,8 @@ export const ContentModal = ({
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data, "data");
     setNewData(data);
+    setOpen(false);
   };
 
   return (
@@ -47,7 +50,7 @@ export const ContentModal = ({
         <Label htmlFor="name" className="text-right">
           Descripcion
         </Label>
-        <Input
+        <Textarea
           className="col-span-3"
           id="name"
           placeholder="Descripcion"

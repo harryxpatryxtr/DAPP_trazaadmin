@@ -11,12 +11,21 @@ import {
 } from "@/components/ui/select";
 
 type Inputs = {
-  estado: string;
-  descripcion: string;
+  idPermissions: string;
+  permissions: string;
+  descriptionPermissions: string;
+  state: string;
 };
 
-export const ContentModalUpdate = ({ data, setNewData }: any) => {
-  const { item } = data;
+type ContentModalUpdateProps = {
+  dataUpdate: any;
+  setNewData: (data: Inputs) => void;
+};
+
+export const ContentModalUpdate = ({
+  dataUpdate,
+  setNewData
+}: ContentModalUpdateProps) => {
   const {
     handleSubmit,
     register,
@@ -25,15 +34,17 @@ export const ContentModalUpdate = ({ data, setNewData }: any) => {
   } = useForm<Inputs>();
 
   const handleChangeState = (value: string) => {
-    setValue("estado", value);
+    setValue("state", value);
   };
 
-  const onSubmit: SubmitHandler<any> = (data) => {
-    const newData = {
-      id: item,
-      ...data
-    };
-    setNewData(newData);
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    setNewData({
+      idPermissions: dataUpdate.idPermissions,
+      permissions: data.permissions || dataUpdate.permissions,
+      descriptionPermissions:
+        data.descriptionPermissions || dataUpdate.descriptionPermissions,
+      state: data.state || dataUpdate.state
+    });
   };
 
   return (
@@ -43,13 +54,13 @@ export const ContentModalUpdate = ({ data, setNewData }: any) => {
           <Label htmlFor="username" className="text-right">
             Código
           </Label>
-          <span>{data.codigo}</span>
+          <span className="col-span-3">{dataUpdate.idPermissions}</span>
         </div>
         <div className="grid grid-cols-4 items-center gap-x-4">
           <Label htmlFor="username" className="text-right">
             Permiso
           </Label>
-          <span>{data.permiso}</span>
+          <span className="col-span-3">{dataUpdate.permissions}</span>
         </div>
         <div className="grid grid-cols-4 items-center gap-x-4">
           <Label htmlFor="username" className="text-right">
@@ -57,11 +68,11 @@ export const ContentModalUpdate = ({ data, setNewData }: any) => {
           </Label>
           <Input
             id="username"
-            defaultValue={data.description}
+            defaultValue={dataUpdate.descriptionPermissions}
             className="col-span-3"
-            {...register("descripcion", { required: true })}
+            {...register("descriptionPermissions", { required: true })}
           />
-          {errors.descripcion && (
+          {errors.descriptionPermissions && (
             <span className="text-red-500 col-span-4 text-xs text-right">
               Este campo es requerido
             </span>
@@ -71,9 +82,12 @@ export const ContentModalUpdate = ({ data, setNewData }: any) => {
           <Label htmlFor="username" className="text-right">
             Estado
           </Label>
-          <Select onValueChange={handleChangeState}>
+          <Select
+            onValueChange={handleChangeState}
+            defaultValue={dataUpdate.state}
+          >
             <SelectTrigger className="col-span-3">
-              <SelectValue placeholder="Select" defaultValue={data.estado} />
+              <SelectValue placeholder={dataUpdate.state} />
             </SelectTrigger>
             <SelectContent position="popper">
               <SelectItem value="active">Activo</SelectItem>

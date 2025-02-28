@@ -26,7 +26,6 @@ import {
   SidebarRail
 } from "@/components/ui/sidebar";
 
-// This is sample data.
 const data = {
   user: {
     name: "Pedro Mollehuanca",
@@ -84,7 +83,6 @@ const data = {
       url: "#",
       icon: SquareTerminal,
       isActive: true,
-
       items: [
         {
           title: "Permiso",
@@ -108,10 +106,6 @@ const data = {
         {
           title: "Empresa",
           url: "/empresa"
-        },
-        {
-          title: "Usuario",
-          url: "/usuario"
         }
       ]
     }

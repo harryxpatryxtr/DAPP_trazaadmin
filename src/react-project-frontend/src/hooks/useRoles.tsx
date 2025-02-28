@@ -1,18 +1,9 @@
 import { useState } from "react";
 import { react_project_backend } from "../../../declarations/react-project-backend";
-
-interface Role {
-  rol: string;
-  userCreated: string;
-  descriptionRol: string;
-  updateDate: string;
-  state: string;
-  idRol: string;
-  creationDate: string;
-}
+import { AdmRoles_Type } from "../../../declarations/react-project-backend/react-project-backend.did";
 
 export const useRoles = () => {
-  const [roles, setRoles] = useState<Role[]>([]);
+  const [roles, setRoles] = useState<AdmRoles_Type[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -39,7 +30,7 @@ export const useRoles = () => {
     }
   };
 
-  const createRole = async (role: Role) => {
+  const createRole = async (role: AdmRoles_Type) => {
     setLoading(true);
     setError(null);
     try {
