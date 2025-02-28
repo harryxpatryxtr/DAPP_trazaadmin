@@ -12,11 +12,13 @@ import TypeUserPage from "@/pages/TypeUserPage";
 import TypePositionPage from "@/pages/TypePositionPage";
 import CompanyPage from "@/pages/CompanyPage";
 import PrivateRoute from "@/components/PrivateRoute";
+import AddFilePage from "@/pages/AddFilePage";
 
 const AppRoutes: React.FC = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/file" element={<AddFilePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route element={<PrivateRoute />}>
           <Route path="/permiso" element={<PermisoPage />} />
