@@ -3,14 +3,10 @@
 import * as React from "react";
 import {
   AudioWaveform,
-  BookOpen,
   Bot,
   Command,
-  Frame,
   GalleryVerticalEnd,
   Home,
-  Map,
-  PieChart,
   Settings2,
   SquareTerminal
 } from "lucide-react";
@@ -25,8 +21,10 @@ import {
   SidebarHeader,
   SidebarRail
 } from "@/components/ui/sidebar";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-const data = {
+const items = {
   user: {
     name: "Pedro Mollehuanca",
     email: "pedro.mollehuanca@umatechnology.io",
@@ -113,16 +111,34 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const location = useLocation();
+  const [activeMenus, setActiveMenus] = useState<{ [key: string]: boolean }>(
+    {}
+  );
+  // Detectar si una URL coincide con la ruta actual y abrir el submenu
+  useEffect(() => {
+    const updatedMenus: { [key: string]: boolean } = {};
+
+    items.navMain.forEach((item) => {
+      if (item.items) {
+        updatedMenus[item.title] = item.items.some((subItem) =>
+          location.pathname.startsWith(subItem.url)
+        );
+      }
+    });
+    console.log(updatedMenus);
+    setActiveMenus(updatedMenus);
+  }, [location.pathname, items]);
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <TeamSwitcher teams={items.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={items.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={items.user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

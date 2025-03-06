@@ -649,7 +649,7 @@ actor class Adm() {
 
 
 
- private stable var ParentCompanyREO : Trie.Trie<Text, Types.ParentCompanyREO_Type> = Trie.empty();
+  private stable var ParentCompanyREO : Trie.Trie<Text, Types.ParentCompanyREO_Type> = Trie.empty();
   private stable var ParentCompanyREOKey : Int = 0;
   public func createParentCompany(parentCompany : Types.ParentCompanyREO_Type) : async Text {
    
