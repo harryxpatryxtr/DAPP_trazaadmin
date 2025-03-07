@@ -48,7 +48,7 @@ export const Permissions = () => {
 
   return (
     <Layout>
-      <h1 className="text-3xl font-bold underline">Pagina Permisos</h1>
+      <h1 className="text-2xl font-bold">Pagina Permisos</h1>
       {loading && <p>Cargando permisos...</p>}
       {error && <p>Error al cargar los permisos.</p>}
       {permissions && (

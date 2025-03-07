@@ -1,19 +1,10 @@
 "use client";
 
 import * as React from "react";
-import {
-  AudioWaveform,
-  Bot,
-  Command,
-  GalleryVerticalEnd,
-  Home,
-  Settings2,
-  SquareTerminal
-} from "lucide-react";
+import { Bot, Home, Settings2, SquareTerminal } from "lucide-react";
 
 import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
-import { TeamSwitcher } from "./team-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -23,33 +14,28 @@ import {
 } from "@/components/ui/sidebar";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import Logo from "@/assets/logo_traza.png";
 const items = {
   user: {
     name: "Pedro Mollehuanca",
     email: "pedro.mollehuanca@umatechnology.io",
     avatar: "/avatars/shadcn.jpg"
   },
-  teams: [
-    { name: "Super Admin", logo: GalleryVerticalEnd, plan: "Enterprise" },
-    { name: "Admin", logo: AudioWaveform, plan: "Startup" },
-    { name: "User", logo: Command, plan: "Free" }
-  ],
   navMain: [
     {
       title: "Inicio",
-      url: "/",
+      url: "/home",
       icon: Home
     },
     {
       title: "Configuracion",
-      url: "/configuracion",
+      url: "#",
       icon: Settings2,
       items: [
-        { title: "Dominio", url: "/configuracion/dominio" },
-        { title: "Tipo Usuario", url: "/configuracion/tipo-usuario" },
-        { title: "Tipo Documento", url: "/configuracion/tipo-documento" },
-        { title: "Tipo Cargo", url: "/configuracion/tipo-cargo" }
+        { title: "Dominio", url: "/dominio" },
+        { title: "Tipo Usuario", url: "/tipo-usuario" },
+        { title: "Tipo Documento", url: "/tipo-documento" },
+        { title: "Tipo Cargo", url: "/tipo-cargo" }
       ]
     },
     {
@@ -94,7 +80,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={items.teams} />
+        <img src={Logo} alt="logo" width={150} className="mx-auto mt-5" />
       </SidebarHeader>
       <SidebarContent>
         <NavMain

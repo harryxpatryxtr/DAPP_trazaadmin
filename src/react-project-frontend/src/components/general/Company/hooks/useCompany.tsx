@@ -43,7 +43,6 @@ export const useCompany = () => {
   };
 
   const createCompany = async (company: ParentCompanyREO_Type) => {
-    console.log(company, "company create");
     setLoading(true);
     setError(null);
     try {
@@ -55,13 +54,10 @@ export const useCompany = () => {
   };
 
   const uploadFile = async (selectedFile: File, canisterId: string) => {
-    console.log(selectedFile, "selectedFile");
-    console.log(canisterId, "canisterId");
     setUploading(true);
     try {
       const arrayBuffer = await selectedFile.arrayBuffer();
       const uint8Array = new Uint8Array(arrayBuffer);
-      console.log(uint8Array, "uint8Array");
       await react_project_backend.installWasm(canisterId, [...uint8Array]);
       alert("Archivo subido con éxito a ICP");
     } catch (error) {

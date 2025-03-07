@@ -6,9 +6,11 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { DropDownTypeDocument, DropDownTypeUsers } from "@/components/general";
 import { Inputs } from "./types";
 export const ContentModal = ({
-  setNewData
+  setNewData,
+  setOpen
 }: {
   setNewData: (data: any) => void;
+  setOpen: (open: boolean) => void;
 }) => {
   const [selectTypeUser, setSelectTypeUser] = useState<string>("");
   const [selectTypeDocument, setSelectTypeDocument] = useState<string>("");
@@ -20,13 +22,13 @@ export const ContentModal = ({
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data, "data");
     setNewData({
       ...data,
       id_type_user: selectTypeUser,
       id_type_document: selectTypeDocument
       // id_type_function: selectTypeFunction
     });
+    setOpen(false);
   };
 
   return (

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { react_project_backend } from "../../../../../../../declarations/react-project-backend";
 import { SetGroupInformations_Type } from "../../../../../../../declarations/react-project-backend/react-project-backend.did";
-
+import { toast } from "sonner";
 export const useDomain = () => {
   const [domains, setDomains] = useState<SetGroupInformations_Type[]>([]);
   const [loading, setLoading] = useState(false);
@@ -37,6 +37,9 @@ export const useDomain = () => {
     try {
       await react_project_backend.createInformationSet(domain);
       await fetchDomains();
+      toast("Dominio creado correctamente", {
+        description: "Dominio creado correctamente"
+      });
     } catch (err: any) {
       console.error(err);
     }

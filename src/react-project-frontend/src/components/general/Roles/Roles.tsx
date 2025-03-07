@@ -26,7 +26,6 @@ export const Roles = () => {
   const [openAssign, setOpenAssign] = useState(false);
   const userData = JSON.parse(localStorage.getItem("user") || "{}");
   const columns = useColumns(setNewData);
-
   useEffect(() => {
     fetchRoles();
     fetchPermissions();
@@ -49,17 +48,7 @@ export const Roles = () => {
   }, [newData]);
 
   useEffect(() => {
-    console.log(dataAssign, "data assign");
     if (dataAssign) {
-      // {
-      //   idRolPermissions: text;
-      //   idPermissions: text;
-      //   creationDate: text;
-      //   state: text;
-      //   idRol: text;
-      //   userCreated: text;
-      //   updateDate: text;
-      // }
       createRolPermission({
         idRolPermissions: dataAssign.idRol,
         idPermissions: dataAssign.permissions,
@@ -100,7 +89,7 @@ export const Roles = () => {
 
   return (
     <Layout>
-      <h1 className="text-3xl font-bold underline">Roles Page</h1>
+      <h1 className="text-2xl font-bold">Roles Page</h1>
       {loading && <p>Cargando roles...</p>}
       {error && <p>Error al cargar los roles.</p>}
       {roles && (

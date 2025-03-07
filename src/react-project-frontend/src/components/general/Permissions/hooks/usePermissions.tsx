@@ -32,7 +32,6 @@ export const usePermissions = () => {
   const createPermission = async (permission: AdmPermissions_Type) => {
     setLoading(true);
     setError(null);
-    console.log(permission, "hook create");
     try {
       await react_project_backend.createPermission(permission);
       await fetchPermissions();

@@ -39,7 +39,6 @@ export const ContentModalAssign = ({
   };
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data, "data modal assign submit");
     setDataAssign({
       idRol: data.idRol,
       permissions: data.permissions

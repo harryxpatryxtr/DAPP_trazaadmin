@@ -40,7 +40,7 @@ export function NavMain({ items, activeMenus, setActiveMenus }: NavMainProps) {
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel>DPP - Service provider</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible

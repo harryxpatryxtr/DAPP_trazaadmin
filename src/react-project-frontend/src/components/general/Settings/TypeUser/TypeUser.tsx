@@ -49,7 +49,7 @@ const TypeUser = () => {
   ];
   return (
     <Layout>
-      <h1 className="text-3xl font-bold underline">Pagina Tipo Usuario</h1>
+      <h1 className="text-2xl font-bold">Pagina Tipo Usuario</h1>
       {loading && <p>Cargando tipo de usuario...</p>}
       {error && <p>Error al cargar el tipo de usuario.</p>}
       {typeUser && (

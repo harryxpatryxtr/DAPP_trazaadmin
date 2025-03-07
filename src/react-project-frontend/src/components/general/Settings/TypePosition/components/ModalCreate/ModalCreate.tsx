@@ -11,7 +11,7 @@ type ModalCreateProps = {
 
 type Inputs = {
   typeCargo: string;
-  description: string;
+  descriptionTypeCargo: string;
 };
 
 export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
@@ -47,9 +47,9 @@ export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
             id="name"
             defaultValue={""}
             className="col-span-3"
-            {...register("description", { required: true })}
+            {...register("descriptionTypeCargo", { required: true })}
           />
-          {errors.description && (
+          {errors.descriptionTypeCargo && (
             <span className="text-red-500 col-span-4 text-xs text-right">
               Este campo es requerido
             </span>

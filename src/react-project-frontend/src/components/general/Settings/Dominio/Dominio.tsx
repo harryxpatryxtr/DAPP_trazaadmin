@@ -48,7 +48,7 @@ const Dominio = () => {
 
   return (
     <Layout>
-      <h1 className="text-3xl font-bold underline">Pagina Dominio</h1>
+      <h1 className="text-2xl font-bold">Pagina Dominio</h1>
       {loading && <p>Cargando dominios...</p>}
       {error && <p>Error al cargar los permisos.</p>}
       {domains && (

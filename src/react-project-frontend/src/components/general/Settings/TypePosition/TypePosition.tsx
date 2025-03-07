@@ -55,7 +55,7 @@ export const TypePosition = () => {
 
   return (
     <Layout>
-      <h1 className="text-3xl font-bold underline">Pagina Tipo de Cargo</h1>
+      <h1 className="text-2xl font-bold">Pagina Tipo de Cargo</h1>
       {loading && <p>Cargando tipo de cargo...</p>}
       {error && <p>Error al cargar el tipo de cargo.</p>}
       {typePosition && (

@@ -38,12 +38,10 @@ export const ModalCannister = ({
     fetchCompanies();
   }, []);
   const onSubmit: SubmitHandler<any> = (data) => {
-    console.log(data, "data wasm");
     setNewDataCannister(data);
     setOpen(false);
   };
   const handleChangeCompany = (value: string) => {
-    console.log(value, "value");
     setValue("companyId", value);
   };
   const handleChangeCannister = (value: string) => {

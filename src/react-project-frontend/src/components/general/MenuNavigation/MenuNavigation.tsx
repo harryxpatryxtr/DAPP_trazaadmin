@@ -14,8 +14,10 @@ import {
   SidebarTrigger
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "./components/app-sidebar";
+import { useLocation } from "react-router-dom";
 
 export const MenuNavigation = ({ children }: { children: React.ReactNode }) => {
+  const location = useLocation();
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -27,13 +29,13 @@ export const MenuNavigation = ({ children }: { children: React.ReactNode }) => {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
+                  <BreadcrumbLink href="/home">Inicio</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                  <BreadcrumbPage>
+                    {location.pathname.split("/")[1].replace("-", " ")}
+                  </BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>

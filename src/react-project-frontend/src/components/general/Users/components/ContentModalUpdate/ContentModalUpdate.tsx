@@ -6,14 +6,19 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { DropDownTypeFunction } from "@/components/general/DropDownTypeFunction";
 
-export const ContentModalUpdate = ({ data }: { data: any }) => {
+export const ContentModalUpdate = ({
+  data,
+  setNewData
+}: {
+  data: any;
+  setNewData: (data: any) => void;
+}) => {
   const {
     register,
 
     handleSubmit,
     formState: { errors }
   } = useForm<Inputs>();
-  console.log(data, "dat int");
   // return null;
   return (
     <form className="grid gap-4 py-4">

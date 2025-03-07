@@ -30,7 +30,6 @@ export const ModalUpdate = ({ setNewData, dataUpdate }: ModalUpdateProps) => {
     formState: { errors },
     setValue
   } = useForm<Inputs>();
-  console.log(dataUpdate, "dataUpdate");
   const handleChangeState = (value: string) => {
     setValue("state", value);
   };

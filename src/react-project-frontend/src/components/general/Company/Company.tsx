@@ -31,7 +31,6 @@ export const Company = () => {
 
   useEffect(() => {
     if (newData) {
-      console.log(newData, "newData");
       createCompany({
         ...newData,
         idCanisterData: "",
@@ -78,7 +77,7 @@ export const Company = () => {
   ];
   return (
     <Layout>
-      <h1 className="text-3xl font-bold underline">Pagina Empresas</h1>
+      <h1 className="text-2xl font-bold">Pagina Empresas</h1>
       {/* <UbigeoSelect /> */}
       {loading && <p>Cargando empresas...</p>}
       {error && <p>Error al cargar las empresas.</p>}

@@ -1,88 +1,31 @@
 import React, { useState } from "react";
-import { useUser } from "@/hooks/useUser";
+import { useUser } from "./hooks/useUser";
 import { useEffect } from "react";
 import { Modal } from "@/components/general/Modal/Modal";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/general/DataTable/DataTable";
 import Layout from "@/components/layout";
-import {
-  ContentModal,
-  ContentModalAssign,
-  ContentModalUpdate
-} from "./components";
+import { ContentModal, ContentModalUpdate } from "./components";
+import { useColumns } from "./hooks/useColumns";
 
 export const Users = () => {
   const userData = JSON.parse(localStorage.getItem("user") || "{}");
   const { user, loading, error, fetchUser, handleCreateUser } = useUser();
   const [newData, setNewData] = useState<any>(null);
-  const [dataAssign, setDataAssign] = useState<any>(null);
   const [open, setOpen] = useState(false);
-
+  const columns = useColumns(setNewData);
   useEffect(() => {
     fetchUser();
   }, []);
-  const columns = [
-    {
-      header: "item",
-      accessorKey: "name",
-      cell: ({ row }: { row: any }) => {
-        return <p>{row.index + 1}</p>;
-      }
-    },
-    {
-      header: "Codigo",
-      accessorKey: "codigo"
-    },
-    {
-      header: "Usuario",
-      accessorKey: "name"
-    },
-    {
-      header: "Funcion",
-      accessorKey: "funcion"
-    },
-    {
-      header: "Correo",
-      accessorKey: "email"
-    },
-    {
-      header: "Rol",
-      accessorKey: "rol"
-    },
-    {
-      header: "Estado",
-      accessorKey: "state"
-    },
-    {
-      header: "actions",
-      accessorKey: "actions",
-      cell: ({ row }: { row: any }) => {
-        return (
-          <Modal
-            trigger={<Button>Editar</Button>}
-            data={<ContentModalUpdate data={row.original} />}
-            subTitle="Editar el usuario"
-            title="Editar"
-          />
-        );
-      }
-    }
-  ];
   const data = user;
   const headerActions = [
     <Modal
       trigger={<Button>Crear</Button>}
-      data={<ContentModal setNewData={setNewData} />}
+      data={<ContentModal setNewData={setNewData} setOpen={setOpen} />}
       subTitle="Nuevo usuario"
       title="Nuevo"
-      setOpen={() => setOpen(true)}
+      setOpen={() => setOpen(!open)}
       open={open}
-    />,
-    <Modal
-      trigger={<Button>Asignar</Button>}
-      data={<ContentModalAssign setDataAssign={setDataAssign} />}
-      subTitle="Asignar usuario"
-      title="Asignar"
     />
   ];
 
@@ -102,9 +45,16 @@ export const Users = () => {
 
   return (
     <Layout>
-      <h1 className="text-3xl font-bold underline">Usuario Page</h1>
-
-      <DataTable columns={columns} data={data} headerActions={headerActions} />
+      <h1 className="text-2xl font-bold">Usuario Page</h1>
+      {loading && <p>Cargando usuarios...</p>}
+      {error && <p>Error al cargar los usuarios.</p>}
+      {data && (
+        <DataTable
+          columns={columns}
+          data={data}
+          headerActions={headerActions}
+        />
+      )}
     </Layout>
   );
 };

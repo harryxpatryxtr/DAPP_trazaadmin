@@ -47,7 +47,7 @@ const TypeDocument = () => {
 
   return (
     <Layout>
-      <h1 className="text-3xl font-bold underline">Pagina Tipo de Documento</h1>
+      <h1 className="text-2xl font-bold">Pagina Tipo de Documento</h1>
       {loading && <p>Cargando...</p>}
       {error && <p>Error al cargar los datos</p>}
       {typeDocuments && (

@@ -16,7 +16,6 @@ type ModalUpdateProps = {
 
 export const ModalUpdate = ({ dataUpdate, setNewData }: ModalUpdateProps) => {
   const { register, handleSubmit, setValue } = useForm();
-  console.log(dataUpdate, "data update");
   const onSubmit: SubmitHandler<any> = (data) => {
     const newData = {
       idParentCompany: dataUpdate.idParentCompany,

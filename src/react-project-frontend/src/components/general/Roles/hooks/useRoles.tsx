@@ -50,16 +50,6 @@ export const useRoles = () => {
   const createRolPermission = async (rolPermission: AdmRolPermissions_Type) => {
     setLoading(true);
     setError(null);
-    console.log(rolPermission, "hook create");
-    // {
-    //   idRolPermissions: text;
-    //   idPermissions: text;
-    //   creationDate: text;
-    //   state: text;
-    //   idRol: text;
-    //   userCreated: text;
-    //   updateDate: text;
-    // }
     try {
       await react_project_backend.createRolPermission(rolPermission);
       await fetchRoles();

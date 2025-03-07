@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { react_project_backend } from "../../../declarations/react-project-backend";
+import { react_project_backend } from "../../../../../../declarations/react-project-backend";
 interface User {
   codigo: string;
   email: string;
@@ -18,9 +18,7 @@ export const useUser = () => {
     setError(null);
     try {
       const data = await react_project_backend.readAllUsers();
-      console.log(data, "data user");
-      const transformedData = data.map((user) => {
-        console.log(user, "user iteracion");
+      const transformedData = data.map((user: any) => {
         return {
           codigo: user[1].idUser,
           email: user[1].email,
