@@ -38,11 +38,6 @@ export const ContentModalAssign = ({
     setValue("idRol", value);
   };
 
-  const handleChangePermissions = (value: string) => {
-    console.log(value, "value permissions array");
-    setValue("permissions", [value]);
-  };
-
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data, "data modal assign submit");
     setDataAssign({

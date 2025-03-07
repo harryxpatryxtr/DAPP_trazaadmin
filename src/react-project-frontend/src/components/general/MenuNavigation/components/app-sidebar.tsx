@@ -31,21 +31,9 @@ const items = {
     avatar: "/avatars/shadcn.jpg"
   },
   teams: [
-    {
-      name: "Super Admin",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise"
-    },
-    {
-      name: "Admin",
-      logo: AudioWaveform,
-      plan: "Startup"
-    },
-    {
-      name: "User",
-      logo: Command,
-      plan: "Free"
-    }
+    { name: "Super Admin", logo: GalleryVerticalEnd, plan: "Enterprise" },
+    { name: "Admin", logo: AudioWaveform, plan: "Startup" },
+    { name: "User", logo: Command, plan: "Free" }
   ],
   navMain: [
     {
@@ -58,54 +46,27 @@ const items = {
       url: "/configuracion",
       icon: Settings2,
       items: [
-        {
-          title: "Dominio",
-          url: "/configuracion/dominio"
-        },
-        {
-          title: "Tipo Usuario",
-          url: "/configuracion/tipo-usuario"
-        },
-        {
-          title: "Tipo Documento",
-          url: "/configuracion/tipo-documento"
-        },
-        {
-          title: "Tipo Cargo",
-          url: "/configuracion/tipo-cargo"
-        }
+        { title: "Dominio", url: "/configuracion/dominio" },
+        { title: "Tipo Usuario", url: "/configuracion/tipo-usuario" },
+        { title: "Tipo Documento", url: "/configuracion/tipo-documento" },
+        { title: "Tipo Cargo", url: "/configuracion/tipo-cargo" }
       ]
     },
     {
       title: "Administrador",
       url: "#",
       icon: SquareTerminal,
-      isActive: true,
       items: [
-        {
-          title: "Permiso",
-          url: "/permiso"
-        },
-        {
-          title: "Rol",
-          url: "/rol"
-        },
-        {
-          title: "Usuario",
-          url: "/usuario"
-        }
+        { title: "Permiso", url: "/permiso" },
+        { title: "Rol", url: "/rol" },
+        { title: "Usuario", url: "/usuario" }
       ]
     },
     {
       title: "REO",
       url: "#",
       icon: Bot,
-      items: [
-        {
-          title: "Empresa",
-          url: "/empresa"
-        }
-      ]
+      items: [{ title: "Empresa", url: "/empresa" }]
     }
   ]
 };
@@ -115,7 +76,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [activeMenus, setActiveMenus] = useState<{ [key: string]: boolean }>(
     {}
   );
-  // Detectar si una URL coincide con la ruta actual y abrir el submenu
+
   useEffect(() => {
     const updatedMenus: { [key: string]: boolean } = {};
 
@@ -126,16 +87,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         );
       }
     });
-    console.log(updatedMenus);
+
     setActiveMenus(updatedMenus);
-  }, [location.pathname, items]);
+  }, [location.pathname]);
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <TeamSwitcher teams={items.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={items.navMain} />
+        <NavMain
+          items={items.navMain}
+          activeMenus={activeMenus}
+          setActiveMenus={setActiveMenus}
+        />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={items.user} />

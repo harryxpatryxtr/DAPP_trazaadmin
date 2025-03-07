@@ -49,7 +49,6 @@ export const Company = () => {
 
   useEffect(() => {
     if (newDataCannister) {
-      console.log(newDataCannister, "newDataCannister");
       uploadFile(newDataCannister.wasmFile, newDataCannister.idCannisterData);
     }
   }, [newDataCannister]);
@@ -77,7 +76,6 @@ export const Company = () => {
       open={openUpdate}
     />
   ];
-  console.log(companies, "data companies");
   return (
     <Layout>
       <h1 className="text-3xl font-bold underline">Pagina Empresas</h1>

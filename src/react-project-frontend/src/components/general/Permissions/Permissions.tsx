@@ -1,7 +1,7 @@
 import { DataTable, Modal } from "@/components/general";
 import Layout from "@/components/layout";
 import { Button } from "@/components/ui/button";
-import { usePermissions } from "@/hooks/usePermissions";
+import { usePermissions } from "@/components/general/Permissions/hooks/usePermissions";
 import { useEffect, useState } from "react";
 import { ContentModal } from "./components";
 import { useColumns } from "./hooks/useColumn";

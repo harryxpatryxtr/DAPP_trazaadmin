@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
-import { useRoles } from "@/hooks/useRoles";
+import { useRoles } from "@/components/general/Roles/hooks/useRoles";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/general/Modal/Modal";
 import { DataTable } from "@/components/general/DataTable/DataTable";
 import { ContentModal } from "./components/ContentModal";
 import Layout from "@/components/layout";
 import { ContentModalAssign } from "./components/ContentModalAssign";
-import { usePermissions } from "@/hooks/usePermissions";
+import { usePermissions } from "../Permissions/hooks/usePermissions";
 import { useColumns } from "./hooks/useColumns";
 import { useNewData } from "../Settings/Dominio/hooks/useData";
 
 export const Roles = () => {
   const { newData, setNewData } = useNewData(null);
   const { newData: dataAssign, setNewData: setDataAssign } = useNewData(null);
-  const { roles, loading, error, fetchRoles, createRole } = useRoles();
+  const { roles, loading, error, fetchRoles, createRole, createRolPermission } =
+    useRoles();
   const {
     permissions,
     loading: loadingPermissions,
@@ -22,6 +23,7 @@ export const Roles = () => {
     createPermission
   } = usePermissions();
   const [open, setOpen] = useState(false);
+  const [openAssign, setOpenAssign] = useState(false);
   const userData = JSON.parse(localStorage.getItem("user") || "{}");
   const columns = useColumns(setNewData);
 
@@ -47,8 +49,26 @@ export const Roles = () => {
   }, [newData]);
 
   useEffect(() => {
+    console.log(dataAssign, "data assign");
     if (dataAssign) {
-      createPermission(dataAssign);
+      // {
+      //   idRolPermissions: text;
+      //   idPermissions: text;
+      //   creationDate: text;
+      //   state: text;
+      //   idRol: text;
+      //   userCreated: text;
+      //   updateDate: text;
+      // }
+      createRolPermission({
+        idRolPermissions: dataAssign.idRol,
+        idPermissions: dataAssign.permissions,
+        creationDate: "",
+        state: dataAssign.state || "active",
+        idRol: dataAssign.idRol,
+        userCreated: userData.user_created,
+        updateDate: ""
+      });
       setDataAssign(null);
     }
   }, [dataAssign]);
@@ -59,7 +79,7 @@ export const Roles = () => {
       data={<ContentModal setNewData={setNewData} setOpen={setOpen} />}
       subTitle="Nuevo rol"
       title="Nuevo"
-      setOpen={() => setOpen(true)}
+      setOpen={() => setOpen(!open)}
       open={open}
     />,
     <Modal
@@ -73,6 +93,8 @@ export const Roles = () => {
       }
       subTitle="Asignar rol"
       title="Asignar"
+      setOpen={() => setOpenAssign(!openAssign)}
+      open={openAssign}
     />
   ];
 

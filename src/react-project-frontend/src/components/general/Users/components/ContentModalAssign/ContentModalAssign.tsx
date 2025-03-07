@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
-import { useRoles } from "@/hooks/useRoles";
+import { useRoles } from "@/components/general/Roles/hooks/useRoles";
 import { useUser } from "@/hooks/useUser";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";

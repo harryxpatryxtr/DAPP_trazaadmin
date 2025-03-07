@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { react_project_backend } from "../../../declarations/react-project-backend";
-import { AdmRoles_Type } from "../../../declarations/react-project-backend/react-project-backend.did";
+import { react_project_backend } from "../../../../../../declarations/react-project-backend";
+import {
+  AdmRoles_Type,
+  AdmRolPermissions_Type
+} from "../../../../../../declarations/react-project-backend/react-project-backend.did";
 
 export const useRoles = () => {
   const [roles, setRoles] = useState<AdmRoles_Type[]>([]);
@@ -44,5 +47,28 @@ export const useRoles = () => {
     }
   };
 
-  return { roles, loading, error, fetchRoles, createRole };
+  const createRolPermission = async (rolPermission: AdmRolPermissions_Type) => {
+    setLoading(true);
+    setError(null);
+    console.log(rolPermission, "hook create");
+    // {
+    //   idRolPermissions: text;
+    //   idPermissions: text;
+    //   creationDate: text;
+    //   state: text;
+    //   idRol: text;
+    //   userCreated: text;
+    //   updateDate: text;
+    // }
+    try {
+      await react_project_backend.createRolPermission(rolPermission);
+      await fetchRoles();
+    } catch (err: any) {
+      setError("Error al crear el permiso.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { roles, loading, error, fetchRoles, createRole, createRolPermission };
 };

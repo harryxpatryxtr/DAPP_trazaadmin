@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { react_project_backend } from "../../../declarations/react-project-backend";
-import { AdmPermissions_Type } from "../../../declarations/react-project-backend/react-project-backend.did";
+import { react_project_backend } from "../../../../../../declarations/react-project-backend";
+import { AdmPermissions_Type } from "../../../../../../declarations/react-project-backend/react-project-backend.did";
 
 export const usePermissions = () => {
   const [permissions, setPermissions] = useState<AdmPermissions_Type[]>([]);
