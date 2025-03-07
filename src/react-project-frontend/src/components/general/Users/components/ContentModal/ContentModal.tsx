@@ -35,25 +35,6 @@ export const ContentModal = ({
     <form className="grid gap-4 py-4" onSubmit={handleSubmit(onSubmit)}>
       <div className="grid grid-cols-4 items-center gap-4">
         <Label htmlFor="name" className="text-right">
-          Codigo
-        </Label>
-        <Input
-          className="col-span-3"
-          id="name"
-          placeholder="Codigo"
-          {...register("id_user", { required: true })}
-        />
-        {errors.id_user && (
-          <span className="text-red-500 col-span-4 text-xs text-right">
-            Este campo es requerido
-          </span>
-        )}
-      </div>
-      <div className="grid grid-cols-4 items-center gap-4">
-        <DropDownTypeUsers setSelectTypeUser={setSelectTypeUser} />
-      </div>
-      <div className="grid grid-cols-4 items-center gap-4">
-        <Label htmlFor="name" className="text-right">
           Tipo de Documento
         </Label>
         <DropDownTypeDocument setSelectTypeDocument={setSelectTypeDocument} />
@@ -145,6 +126,24 @@ export const ContentModal = ({
         />
 
         {errors.photo_user && (
+          <span className="text-red-500 col-span-4 text-xs text-right">
+            Este campo es requerido
+          </span>
+        )}
+      </div>
+
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Celular
+        </Label>
+        <Input
+          className="col-span-3"
+          id="name"
+          placeholder="Celular"
+          {...register("celular", { required: true })}
+        />
+
+        {errors.email && (
           <span className="text-red-500 col-span-4 text-xs text-right">
             Este campo es requerido
           </span>

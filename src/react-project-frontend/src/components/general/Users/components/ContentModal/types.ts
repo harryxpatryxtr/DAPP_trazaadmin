@@ -12,4 +12,5 @@ export type Inputs = {
   nro_document: string;
   id_type_document: string;
   id_type_function: string;
+  celular: string;
 };

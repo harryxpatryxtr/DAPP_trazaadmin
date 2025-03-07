@@ -30,14 +30,24 @@ export const Users = () => {
   ];
 
   useEffect(() => {
+    console.log(newData, "create user 1");
     if (newData) {
       handleCreateUser({
-        ...newData,
-        userCreated: userData.userCreated,
-        creationDate: userData.creationDate || "",
-        updateDate: userData.updateDate || "",
-        idGroup: userData.idGroup || "",
-        state: userData.state || "activo"
+        maternal_surname: newData.maternal_surname,
+        password: newData.password,
+        name: newData.name,
+        user: newData.user,
+        idTypeDocument: newData.id_type_document,
+        email: newData.email,
+        paternal_surname: newData.paternal_surname,
+        creationDate: "",
+        state: newData.state || "active",
+        idUser: newData.id_user || "",
+        userCreated: userData.user_created,
+        idTypeUser: newData.id_type_user || "",
+        photo_user: newData.photo_user || "",
+        nroDocument: newData.nro_document || "",
+        updateDate: ""
       });
       setOpen(false);
     }

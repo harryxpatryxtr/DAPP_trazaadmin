@@ -44,8 +44,27 @@ export const useUser = () => {
   };
 
   const handleCreateUser = async (newData: any) => {
+    console.log(newData, "create user");
+    // {
+    //   maternal_surname: text;
+    //   password: text;
+    //   name: text;
+    //   user: text;
+    //   idTypeDocument: text;
+    //   email: text;
+    //   paternal_surname: text;
+    //   creationDate: text;
+    //   state: text;
+    //   idUser: text;
+    //   userCreated: text;
+    //   idTypeUser: text;
+    //   photo_user: text;
+    //   nroDocument: text;
+    //   updateDate: text;
+    // }
     try {
       await react_project_backend.createUser(newData);
+      await fetchUser();
     } catch (err: any) {
       console.error(err);
       setError("Error al crear el usuario.");
