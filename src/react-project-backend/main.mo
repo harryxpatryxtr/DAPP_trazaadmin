@@ -732,6 +732,7 @@ actor class Adm() {
     let result = Iter.toArray(Trie.iter(ParentCompanyREO));
     return result;
   };
-
-
+public shared query (msg) func whoami() : async Principal {
+    msg.caller
+  };
 };
