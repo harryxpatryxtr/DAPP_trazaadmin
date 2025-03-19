@@ -86,7 +86,7 @@ actor class Adm() {
       case (null) {
         // Acción cuando no se encuentra el elemento
         let userTypeSetDB : Types.SetUserType_Type = {
-          idTypeUser = Int.toText(informationSetKey);
+          idTypeUser = Int.toText(userTypeSetKey);
           typeUser = userTypeSetReq.typeUser;
           descriptionTypeUser = userTypeSetReq.descriptionTypeUser;
           state = userTypeSetReq.state;
