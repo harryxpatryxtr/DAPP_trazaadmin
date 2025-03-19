@@ -86,7 +86,7 @@ actor class Adm() {
       case (null) {
         // Acción cuando no se encuentra el elemento
         let userTypeSetDB : Types.SetUserType_Type = {
-          idTypeUser = Int.toText(informationSetKey);
+          idTypeUser = Int.toText(userTypeSetKey);
           typeUser = userTypeSetReq.typeUser;
           descriptionTypeUser = userTypeSetReq.descriptionTypeUser;
           state = userTypeSetReq.state;
@@ -732,6 +732,7 @@ actor class Adm() {
     let result = Iter.toArray(Trie.iter(ParentCompanyREO));
     return result;
   };
-
-
+public shared query (msg) func whoami() : async Principal {
+    msg.caller
+  };
 };

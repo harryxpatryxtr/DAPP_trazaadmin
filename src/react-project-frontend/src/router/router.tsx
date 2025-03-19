@@ -13,11 +13,13 @@ import TypePositionPage from "@/pages/TypePositionPage";
 import CompanyPage from "@/pages/CompanyPage";
 import PrivateRoute from "@/components/PrivateRoute";
 import AddFilePage from "@/pages/AddFilePage";
+import InternetIdentityLogin from "@/pages/InternetIdentityLogin"
 
 const AppRoutes: React.FC = () => {
   return (
     <Router>
       <Routes>
+      <Route path="/iil" element={<InternetIdentityLogin />} />
         <Route path="/file" element={<AddFilePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route element={<PrivateRoute />}>
