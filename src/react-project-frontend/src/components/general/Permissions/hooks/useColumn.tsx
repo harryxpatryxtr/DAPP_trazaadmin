@@ -1,18 +1,23 @@
 import { Button } from "@/components/ui/button";
 import { Modal } from "../../Modal";
 import { ContentModalUpdate } from "../components";
+import { ArrowUpDown } from "lucide-react";
 
 export const useColumns = (setNewData: (data: any) => void) => {
   return [
     {
-      header: "Item",
-      accessorKey: "item",
-      cell: ({ row }: { row: any }) => {
-        return <p>{row.index + 1}</p>;
-      }
-    },
-    {
-      header: "Código",
+      header: ({ column }: { column: any }) => {
+        return (
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            className="text-center"
+          >
+            Código
+            <ArrowUpDown />
+          </Button>
+        );
+      },
       accessorKey: "idPermissions"
     },
     {

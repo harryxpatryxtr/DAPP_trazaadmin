@@ -14,15 +14,14 @@ const TypeUser = () => {
   const { typeUser, fetchTypeUser, loading, error, createTypeUser } =
     useTypeUser();
   const [open, setOpen] = useState(false);
-
+  const userData = JSON.parse(localStorage.getItem("user") || "{}");
+  const user_created = userData.user_created;
   useEffect(() => {
     fetchTypeUser();
   }, []);
 
   useEffect(() => {
     if (newData) {
-      const userData = JSON.parse(localStorage.getItem("user") || "{}");
-      const user_created = userData.user_created;
       createTypeUser({
         idTypeUser: newData.idTypeUser || "",
         typeUser: newData.typeUser,

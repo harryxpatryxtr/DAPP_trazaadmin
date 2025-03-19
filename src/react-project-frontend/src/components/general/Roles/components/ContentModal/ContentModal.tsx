@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 type Inputs = {
   rol: string;
-  descripcion: string;
+  descriptionRol: string;
 };
 
 export const ContentModal = ({
@@ -54,9 +54,9 @@ export const ContentModal = ({
           className="col-span-3"
           id="name"
           placeholder="Descripcion"
-          {...register("descripcion", { required: true })}
+          {...register("descriptionRol", { required: true })}
         />
-        {errors.descripcion && (
+        {errors.descriptionRol && (
           <span className="text-red-500 col-span-4 text-xs text-right">
             Este campo es requerido
           </span>

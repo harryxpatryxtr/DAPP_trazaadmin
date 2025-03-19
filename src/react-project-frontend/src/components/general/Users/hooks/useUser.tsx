@@ -33,7 +33,7 @@ export const useUser = () => {
           paternalSurname: user[1].paternal_surname
         };
       });
-
+      console.log(data, "transformedData");
       setUser(transformedData);
     } catch (err: any) {
       console.error(err);
@@ -45,23 +45,6 @@ export const useUser = () => {
 
   const handleCreateUser = async (newData: any) => {
     console.log(newData, "create user");
-    // {
-    //   maternal_surname: text;
-    //   password: text;
-    //   name: text;
-    //   user: text;
-    //   idTypeDocument: text;
-    //   email: text;
-    //   paternal_surname: text;
-    //   creationDate: text;
-    //   state: text;
-    //   idUser: text;
-    //   userCreated: text;
-    //   idTypeUser: text;
-    //   photo_user: text;
-    //   nroDocument: text;
-    //   updateDate: text;
-    // }
     try {
       await react_project_backend.createUser(newData);
       await fetchUser();

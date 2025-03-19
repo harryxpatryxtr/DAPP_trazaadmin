@@ -30,7 +30,6 @@ export const Users = () => {
   ];
 
   useEffect(() => {
-    console.log(newData, "create user 1");
     if (newData) {
       handleCreateUser({
         maternal_surname: newData.maternal_surname,

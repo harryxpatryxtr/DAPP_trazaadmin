@@ -19,12 +19,12 @@ export const Roles = () => {
     permissions,
     loading: loadingPermissions,
     error: errorPermissions,
-    fetchPermissions,
-    createPermission
+    fetchPermissions
   } = usePermissions();
   const [open, setOpen] = useState(false);
   const [openAssign, setOpenAssign] = useState(false);
   const userData = JSON.parse(localStorage.getItem("user") || "{}");
+  const user_created = userData.user_created;
   const columns = useColumns(setNewData);
   useEffect(() => {
     fetchRoles();
@@ -33,7 +33,6 @@ export const Roles = () => {
 
   useEffect(() => {
     if (newData) {
-      const user_created = userData.user_created;
       createRole({
         userCreated: user_created,
         rol: newData.rol,
@@ -61,7 +60,6 @@ export const Roles = () => {
       setDataAssign(null);
     }
   }, [dataAssign]);
-
   const headerActions = [
     <Modal
       trigger={<Button>Crear</Button>}

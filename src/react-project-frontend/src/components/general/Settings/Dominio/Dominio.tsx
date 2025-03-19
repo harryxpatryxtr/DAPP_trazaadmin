@@ -15,6 +15,7 @@ const Dominio = () => {
   const userData = JSON.parse(localStorage.getItem("user") || "{}");
   const user_created = userData.user_created;
   const [open, setOpen] = useState(false);
+
   useEffect(() => {
     fetchDomains();
   }, []);

@@ -21,7 +21,7 @@ export const ContentModalUpdate = ({
   } = useForm<Inputs>();
   // return null;
   return (
-    <form className="grid gap-4 py-4">
+    <form className="grid gap-4 py-4" onSubmit={handleSubmit(setNewData)}>
       <div className="grid grid-cols-4 items-center gap-4">
         <Label htmlFor="name" className="text-right">
           Codigo
@@ -56,25 +56,6 @@ export const ContentModalUpdate = ({
         <Label htmlFor="name" className="text-right">
           Foto
         </Label>
-        {/* <Input
-          className="col-span-3"
-          id="name"
-          placeholder="Foto"
-          type="file"
-          {...register("photo_user", { required: true })}
-        /> */}
-        {/* <Input
-          className="col-span-3"
-          id="name"
-          placeholder="Foto"
-          {...register("photo_user", { required: true })}
-        />
-
-        {errors.photo_user && (
-          <span className="text-red-500 col-span-4 text-xs text-right">
-            Este campo es requerido
-          </span>
-        )} */}
       </div>
       <div className="grid grid-cols-4 items-center gap-4">
         <Label htmlFor="name" className="text-right">

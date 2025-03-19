@@ -25,6 +25,7 @@ export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
     setNewData(data);
     setOpen(false);
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 py-4">
@@ -36,7 +37,13 @@ export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
             id="name"
             defaultValue={""}
             className="col-span-3"
-            {...register("dominio", { required: true })}
+            {...register("dominio", {
+              required: true,
+              pattern: {
+                value: /^[A-Za-z_]+$/,
+                message: "El dominio debe contener solo letras y guiones bajos"
+              }
+            })}
           />
         </div>
         <div className="grid grid-cols-4 items-center gap-x-4">
