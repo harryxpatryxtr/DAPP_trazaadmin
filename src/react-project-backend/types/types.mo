@@ -1,3 +1,4 @@
+import Text "mo:base/Text";
 module {
 
   public type SetGroupInformations_Type = {
@@ -107,6 +108,7 @@ module {
     maternal_surname : Text;
     photo_user : Text;
     state : Text;
+    phoneNumber: Text;
     userCreated : Text;
     creationDate : Text;
     updateDate : Text;

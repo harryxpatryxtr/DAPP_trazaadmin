@@ -500,6 +500,7 @@ actor class Adm() {
           paternal_surname = user.paternal_surname;
           maternal_surname = user.maternal_surname;
           photo_user = user.photo_user;
+    phoneNumber = user.phoneNumber;
           state = user.state;
           userCreated = user.userCreated;
           creationDate = ahoraComoTexto;
@@ -527,6 +528,7 @@ actor class Adm() {
           paternal_surname = user.paternal_surname;
           maternal_surname = user.maternal_surname;
           photo_user = user.photo_user;
+              phoneNumber = user.phoneNumber;
           state = user.state;
           userCreated = value.userCreated;
           creationDate = value.creationDate;
