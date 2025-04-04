@@ -39,6 +39,7 @@ export const ContentModalAssign = ({
   };
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data, "data asignation");
     setDataAssign({
       idRol: data.idRol,
       permissions: data.permissions

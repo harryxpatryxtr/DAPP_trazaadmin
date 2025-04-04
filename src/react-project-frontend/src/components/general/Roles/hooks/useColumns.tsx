@@ -3,7 +3,6 @@ import { Modal } from "../../Modal";
 import { ContentModalUpdate } from "../components";
 import { ArrowUpDown } from "lucide-react";
 export const useColumns = (setNewData: (data: any) => void) => {
-  console.log(setNewData, "setNewData rol");
   return [
     {
       header: ({ column }: { column: any }) => {

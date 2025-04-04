@@ -48,9 +48,10 @@ export const Roles = () => {
 
   useEffect(() => {
     if (dataAssign) {
+      console.log(dataAssign, "data assign");
       createRolPermission({
         idRolPermissions: dataAssign.idRol,
-        idPermissions: dataAssign.permissions,
+        idPermissions: dataAssign.permissions[0],
         creationDate: "",
         state: dataAssign.state || "active",
         idRol: dataAssign.idRol,
