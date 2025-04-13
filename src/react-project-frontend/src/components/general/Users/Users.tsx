@@ -46,7 +46,8 @@ export const Users = () => {
         idTypeUser: newData.id_type_user || "",
         photo_user: newData.photo_user || "",
         nroDocument: newData.nro_document || "",
-        updateDate: ""
+        updateDate: "",
+        phoneNumber: newData.celular || ""
       });
       setOpen(false);
     }

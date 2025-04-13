@@ -143,7 +143,7 @@ export const ContentModal = ({
           {...register("celular", { required: true })}
         />
 
-        {errors.email && (
+        {errors.email && (    // ERROR DEBE DECIR  .celular
           <span className="text-red-500 col-span-4 text-xs text-right">
             Este campo es requerido
           </span>

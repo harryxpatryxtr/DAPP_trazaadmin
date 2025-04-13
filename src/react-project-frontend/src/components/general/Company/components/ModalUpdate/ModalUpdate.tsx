@@ -32,6 +32,7 @@ export const ModalUpdate = ({ dataUpdate, setNewData }: ModalUpdateProps) => {
         data.parentCompanyContactCellular ||
         dataUpdate.parentCompanyContactCellular,
       parentCompanyWeb: data.parentCompanyWeb || dataUpdate.parentCompanyWeb,
+      logo: data.logo || dataUpdate.logo || "", // Añadiendo el campo logo
       state: data.state || dataUpdate.state
     };
     setNewData(newData);
