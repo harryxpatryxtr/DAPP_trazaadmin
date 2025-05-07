@@ -3,7 +3,7 @@ import { DataTable, Modal, UbigeoSelect } from "..";
 import { ModalCreate, ModalCannister } from "./components";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { useNewData } from "../Settings/Dominio/hooks/useData";
+import { useNewData } from "../Settings/Domain/hooks/useData";
 
 import { useCompany } from "./hooks/useCompany";
 import { useColumns } from "./hooks/use-columns";
@@ -60,6 +60,7 @@ export const Company = () => {
       title="Nuevo"
       setOpen={() => setOpen(!open)}
       open={open}
+      className="sm:max-w-[960px] overflow-y-auto"
     />,
     <Modal
       trigger={<Button>Actualizar</Button>}

@@ -33,6 +33,7 @@ export const useUbigeo = () => {
 
   const [selectedDepartamento, setSelectedDepartamento] = useState("");
   const [selectedProvincia, setSelectedProvincia] = useState("");
+  const [selectedDistrito, setSelectedDistrito] = useState("");
 
   useEffect(() => {
     setDepartamentos(Object.keys(ubigeoOrganized));
@@ -47,6 +48,11 @@ export const useUbigeo = () => {
   const handleProvinciaChange = (provincia: string) => {
     setSelectedProvincia(provincia);
     setDistritos(ubigeoOrganized[selectedDepartamento]?.[provincia] || []);
+    setSelectedDistrito("");
+  };
+
+  const handleDistritoChange = (distrito: string) => {
+    setSelectedDistrito(distrito);
   };
 
   return {
@@ -55,7 +61,9 @@ export const useUbigeo = () => {
     distritos,
     selectedDepartamento,
     selectedProvincia,
+    selectedDistrito,
     handleDepartamentoChange,
-    handleProvinciaChange
+    handleProvinciaChange,
+    handleDistritoChange
   };
 };

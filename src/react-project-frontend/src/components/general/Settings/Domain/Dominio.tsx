@@ -51,7 +51,7 @@ const Dominio = () => {
     <Layout>
       <h1 className="text-2xl font-bold">Pagina Dominio</h1>
       {loading && <p>Cargando dominios...</p>}
-      {error && <p>Error al cargar los permisos.</p>}
+      {error && <p>Error al cargar los dominios.</p>}
       {domains && (
         <DataTable
           columns={columns}

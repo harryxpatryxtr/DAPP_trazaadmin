@@ -1,3 +1,4 @@
+import { UbigeoSelect } from "@/components/general/UbigeoSelect";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -35,10 +36,10 @@ export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
     setOpen(false);
   };
   return (
-    <div>
+    <div className="max-w-2xl">
       <form className="grid gap-4 py-4" onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-4 items-center gap-x-4">
-          <Label htmlFor="name" className="text-right">
+        <div className="grid grid-rows-2 items-center gap-y-2">
+          <Label htmlFor="name" className="text-left">
             GLN
           </Label>
           <Input
@@ -54,8 +55,8 @@ export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
           )}
         </div>
 
-        <div className="grid grid-cols-4 items-center gap-x-4">
-          <Label htmlFor="name" className="text-right">
+        <div className="grid grid-rows-2 items-center gap-y-2">
+          <Label htmlFor="name" className="text-left">
             Empresa
           </Label>
           <Input
@@ -71,8 +72,8 @@ export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
           )}
         </div>
 
-        <div className="grid grid-cols-4 items-center gap-x-4">
-          <Label htmlFor="name" className="text-right">
+        <div className="grid grid-rows-2 items-center gap-y-2">
+          <Label htmlFor="name" className="text-left">
             RUC
           </Label>
           <Input
@@ -88,16 +89,17 @@ export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
           )}
         </div>
 
-        <div className="grid grid-cols-4 items-center gap-x-4">
-          <Label htmlFor="name" className="text-right">
+        <div className="grid grid-rows-2 items-center gap-y-2">
+          <Label htmlFor="name" className="text-left">
             Ubigeo
           </Label>
-          <Input
-            id="name"
-            defaultValue={""}
-            className="col-span-3"
-            {...register("parentCompanyUbigeo", { required: true })}
-          />
+          <UbigeoSelect />
+          {/* <Input
+              id="name"
+              defaultValue={""}
+              className="col-span-3"
+              {...register("parentCompanyUbigeo", { required: true })}
+            /> */}
           {errors.parentCompanyUbigeo && (
             <span className="text-red-500 col-span-4 text-xs text-right">
               Este campo es requerido
@@ -105,8 +107,8 @@ export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
           )}
         </div>
 
-        <div className="grid grid-cols-4 items-center gap-x-4">
-          <Label htmlFor="name" className="text-right">
+        <div className="grid grid-rows-2 items-center gap-y-2">
+          <Label htmlFor="name" className="text-left">
             Direccion
           </Label>
           <Input
@@ -122,8 +124,8 @@ export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
           )}
         </div>
 
-        <div className="grid grid-cols-4 items-center gap-x-4">
-          <Label htmlFor="name" className="text-right">
+        <div className="grid grid-rows-2 items-center gap-y-2">
+          <Label htmlFor="name" className="text-left">
             Localizacion
           </Label>
           <Input
@@ -139,8 +141,8 @@ export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
             </span>
           )}
         </div>
-        <div className="grid grid-cols-4 items-center gap-x-4">
-          <Label htmlFor="name" className="text-right">
+        <div className="grid grid-rows-2 items-center gap-y-2">
+          <Label htmlFor="name" className="text-left">
             Correo
           </Label>
           <Input
@@ -155,8 +157,8 @@ export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
             </span>
           )}
         </div>
-        <div className="grid grid-cols-4 items-center gap-x-4">
-          <Label htmlFor="name" className="text-right">
+        <div className="grid grid-rows-2 items-center gap-y-2">
+          <Label htmlFor="name" className="text-left">
             Celular
           </Label>
           <Input
@@ -171,8 +173,8 @@ export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
             </span>
           )}
         </div>
-        <div className="grid grid-cols-4 items-center gap-x-4">
-          <Label htmlFor="name" className="text-right">
+        <div className="grid grid-rows-2 items-center gap-y-2">
+          <Label htmlFor="name" className="text-left">
             Web
           </Label>
           <Input
@@ -187,8 +189,8 @@ export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
             </span>
           )}
         </div>
-        <div className="grid grid-cols-4 items-center gap-x-4">
-          <Label htmlFor="name" className="text-right">
+        <div className="grid grid-rows-2 items-center gap-y-2">
+          <Label htmlFor="name" className="text-left">
             Logo
           </Label>
           <Input

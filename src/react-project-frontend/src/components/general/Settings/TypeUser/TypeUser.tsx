@@ -1,7 +1,7 @@
 import Layout from "@/components/layout";
 import { DataTable } from "../../";
 import { useColumns } from "./hooks/useColumns";
-import { useNewData } from "../Dominio/hooks/useData";
+import { useNewData } from "../Domain/hooks/useData";
 import { Button } from "@/components/ui/button";
 import { ModalCreate } from "./components";
 import { Modal } from "@/components/general/Modal";

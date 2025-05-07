@@ -5,7 +5,7 @@ import { usePermissions } from "@/components/general/Permissions/hooks/usePermis
 import { useEffect, useState } from "react";
 import { ContentModal } from "./components";
 import { useColumns } from "./hooks/useColumn";
-import { useNewData } from "../Settings/Dominio/hooks/useData";
+import { useNewData } from "../Settings/Domain/hooks/useData";
 
 export const Permissions = () => {
   const { newData, setNewData } = useNewData(null);

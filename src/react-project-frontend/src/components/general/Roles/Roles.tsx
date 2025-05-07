@@ -8,7 +8,7 @@ import Layout from "@/components/layout";
 import { ContentModalAssign } from "./components/ContentModalAssign";
 import { usePermissions } from "../Permissions/hooks/usePermissions";
 import { useColumns } from "./hooks/useColumns";
-import { useNewData } from "../Settings/Dominio/hooks/useData";
+import { useNewData } from "../Settings/Domain/hooks/useData";
 
 export const Roles = () => {
   const { newData, setNewData } = useNewData(null);
