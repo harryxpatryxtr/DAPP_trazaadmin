@@ -18,7 +18,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [authClient, setAuthClient] = useState<AuthClient | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [principalId, setPrincipalId] = useState<string | null>(null);
-
+  // const navigate = useNavigate();
   useEffect(() => {
     const init = async () => {
       const client = await AuthClient.create();
@@ -39,13 +39,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     await authClient.login({
       identityProvider: II_CANISTER_URL,
       onSuccess: async () => {
+
         const identity = authClient.getIdentity();
         setPrincipalId(identity.getPrincipal().toText());
+        localStorage.setItem("token", identity.getPrincipal().toText());
         setIsAuthenticated(true);
+        // navigate("/");
       },
       onError: (error: unknown) => {
         console.error("Error during login", error);
-      },
+      }
     });
   };
 
