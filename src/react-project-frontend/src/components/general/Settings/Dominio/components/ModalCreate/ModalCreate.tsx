@@ -22,6 +22,7 @@ export const ModalCreate = ({ setNewData, setOpen }: ModalCreateProps) => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<any> = (data) => {
+    console.log('onSubmit', data);
     setNewData(data);
     setOpen(false);
   };

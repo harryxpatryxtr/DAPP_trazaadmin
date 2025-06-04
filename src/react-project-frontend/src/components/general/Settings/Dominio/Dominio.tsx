@@ -12,8 +12,7 @@ const Dominio = () => {
   const { newData, setNewData } = useNewData(null);
   const columns = useColumns(setNewData);
   const { domains, loading, error, fetchDomains, createDomain } = useDomain();
-  const userData = JSON.parse(localStorage.getItem("user") || "{}");
-  const user_created = userData.user_created;
+  const principalId = localStorage.getItem("token") || "";
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -21,14 +20,16 @@ const Dominio = () => {
   }, []);
 
   useEffect(() => {
+    console.log('init createDomain');
     if (newData) {
+      console.log('newData', newData);
       createDomain({
         groupInformationDescription: newData.description,
-        userUpdate: user_created,
+        userUpdate: principalId,
         creationDate: "",
         state: newData.state || "active",
         idGroupInformation: newData.idGroupInformation || "",
-        userCreated: user_created,
+        userCreated: principalId,
         groupInformationName: newData.dominio,
         updateDate: ""
       });

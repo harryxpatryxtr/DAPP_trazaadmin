@@ -34,8 +34,10 @@ export const useDomain = () => {
   const createDomain = async (domain: SetGroupInformations_Type) => {
     setLoading(true);
     setError(null);
+    console.log('createDomain', domain);
     try {
       await react_project_backend.createInformationSet(domain);
+      console.log('createDomain after');
       await fetchDomains();
       toast("Dominio creado correctamente", {
         description: "Dominio creado correctamente"
