@@ -7,6 +7,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export default defineConfig({
+  define: {
+    "process.env": "import.meta.env",
+    global: "globalThis"
+  },
   build: {
     outDir: "../dist",
     emptyOutDir: true,

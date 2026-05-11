@@ -1,3 +1,12 @@
+// Polyfill for process (needed for DFX-generated declarations)
+// @ts-ignore - process is not defined in browser environment
+if (typeof process === "undefined") {
+  // @ts-ignore
+  globalThis.process = {
+    env: import.meta.env,
+  };
+}
+
 import React from "react";
 import { AuthProvider } from "@/context/AuthProvider";
 import ReactDOM from "react-dom/client";
